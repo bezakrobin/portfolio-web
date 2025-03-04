@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
+import { Preloader } from "./components/Preloader.tsx";
+import { LandingPage } from "./components/LandingPage.tsx";
 import './App.css'
 
-const App: React.FC = () => {
-    return (
-        <>
-            Main Page
-        </>
-    )
-}
+export default function App()  {
+    const [loading, setLoading] = useState<boolean>(true);
 
-export default App
+    return loading ? (
+        <Preloader onComplete={() => setLoading(false)} />
+    ) : (
+        <LandingPage />
+    );
+};
