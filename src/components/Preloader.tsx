@@ -24,7 +24,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                             { color: "#777777" },
                             {
                                 color: "#AAAAAA",
-                                repeat: 4,
+                                repeat: 2,
                                 yoyo: true,
                                 duration: 1.2,
                                 ease: "power1.inOut",
