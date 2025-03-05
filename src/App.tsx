@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Preloader } from "./components/Preloader.tsx";
 import { LandingPage } from "./components/LandingPage.tsx";
 import './App.css'
