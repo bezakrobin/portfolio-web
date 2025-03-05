@@ -17,7 +17,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 { opacity: 0 },
                 {
                     opacity: 1,
-                    duration: 2,
+                    duration: 0.5,
                     onComplete: () => {
                         gsap.fromTo(
                             textRef.current,
