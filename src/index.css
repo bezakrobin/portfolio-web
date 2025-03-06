@@ -31,4 +31,5 @@ body {
     color: #777777;
     margin: 0;
     font-family: 'Round 8', sans-serif;
+    overflow: hidden;
 }

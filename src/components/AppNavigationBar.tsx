@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { AppBar, Toolbar, Grid2, Box } from "@mui/material";
+import { AppBar, Toolbar, Box } from "@mui/material";
 import { DoubleLineText } from "./DoubleLineText.tsx";
 import { NavButton } from "./NavButton.tsx";
 import gsap from "gsap";
@@ -12,7 +12,7 @@ export const AppNavigationBar: React.FC = () => {
             gsap.fromTo(
                 navRef.current,
                 { opacity: 0, y: -100 },
-                { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+                { opacity: 1, y: 0, duration: 0.3, ease: "power2.out"}
             );
         }
     }, []);

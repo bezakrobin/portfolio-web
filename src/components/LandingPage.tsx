@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { AppNavigationBar } from "./AppNavigationBar.tsx";
+import { Header } from "./Header.tsx";
 
 export const LandingPage: React.FC = () => {
     return (
@@ -14,6 +15,7 @@ export const LandingPage: React.FC = () => {
             }}
         >
             <AppNavigationBar />
+            <Header />
         </Box>
     );
 };
