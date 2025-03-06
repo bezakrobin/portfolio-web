@@ -20,7 +20,7 @@ export const AboutText: React.FC<AboutTextProps> = ({ text }) => {
             <span style={{ fontFamily: "'Round 8', sans-serif", color: "#777777", paddingRight: "10px", fontSize: "25px", lineHeight: "30px" }}>
                 {firstWord}
             </span>{" "}
-            <span style={{ fontFamily: "'Poppins SemiBold', sans-serif", color: "#AAAAAA", fontSize: "20px", lineHeight: "30px" }}>
+            <span style={{ fontFamily: "'Poppins SemiBold', sans-serif", color: "#AAAAAA", fontSize: "18px", lineHeight: "30px" }}>
                 {remainingText}
             </span>
         </Typography>

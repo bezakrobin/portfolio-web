@@ -92,11 +92,7 @@ export const Header: React.FC = () => {
                         opacity: 0
                     }}
                 >
-                    <AboutText text={
-                        "About I am a full-stack developer based in Prague, Czechia, passionate about building modern web experiences." +
-                        "I specialize in scalable applications with REACT, TYPESCRIPT, and PYTHON. I’ve worked with companies like ČEZ and Mibcon" +
-                        " and always seek new challenges to push digital innovation."
-                    } />
+                    <AboutText text={"About I am a full-stack developer based in Prague, Czechia, passionate about building modern web experiences. I specialize in creating scalable applications using React, TypeScript, JavaScript and Python. I have worked with companies like ČEZ and Mibcon, and I am always seeking new challenges to drive digital innovation."} />
                     <ScrollDownButton />
                 </Box>
             </Box>
