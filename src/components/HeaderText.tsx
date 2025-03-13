@@ -15,7 +15,8 @@ export const HeaderText: React.FC<HeaderTextProps> = ({ text, fontSize }) => {
                 lineHeight: fontSize,
                 fontFamily: "'Round 8', sans-serif",
                 paddingRight: "60px",
-                userSelect: "none"
+                userSelect: "none",
+                whiteSpace: "nowrap",
             }}
         >
             {text.split("").map((char, index) => (

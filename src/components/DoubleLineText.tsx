@@ -5,12 +5,14 @@ interface TextLogoProps {
     line1: string;
     line2: string;
     color: string;
+    lineHeight?: number,
 }
 
 export const DoubleLineText: React.FC<TextLogoProps> = ({
     line1,
     line2,
     color,
+    lineHeight = 1.5,
 }) => {
     return (
         <Box
@@ -21,7 +23,7 @@ export const DoubleLineText: React.FC<TextLogoProps> = ({
         >
             <Typography
                 sx={{
-                    lineHeight: 1.5,
+                    lineHeight: lineHeight,
                     fontFamily: "'Poppins Regular', sans-serif"
                 }}
             >
@@ -29,7 +31,7 @@ export const DoubleLineText: React.FC<TextLogoProps> = ({
             </Typography>
             <Typography
                 sx={{
-                    lineHeight: 1.5,
+                    lineHeight: lineHeight,
                     fontFamily: "'Poppins Regular', sans-serif"
                 }}
             >
