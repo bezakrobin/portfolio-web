@@ -54,7 +54,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 alignItems: "center",
                 height: "100vh",
                 backgroundColor: "#111111",
-                userSelect: "none"
+                userSelect: "none",
+                paddingRight: "40px",
             }}
         >
             <Typography
@@ -63,7 +64,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                     opacity: 0,
                     fontSize: "350px",
                     color: "#777777",
-                    fontFamily: "'Round 8', sans-serif"
+                    fontFamily: "'Round 8', sans-serif",
                 }}
             >
                 RB
