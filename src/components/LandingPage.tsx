@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { AppNavigationBar } from "./AppNavigationBar.tsx";
 import { Header } from "./Header.tsx";
 import { Projects } from "./Projects.tsx";
+import { CommunityContributions } from "./CommunityContributions.tsx";
 
 export const LandingPage: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ export const LandingPage: React.FC = () => {
                 <Header />
             </Box>
             <Projects />
+            <CommunityContributions />
         </Box>
     );
 };
