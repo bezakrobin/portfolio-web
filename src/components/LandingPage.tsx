@@ -2,8 +2,10 @@ import React from "react";
 import { Box } from "@mui/material";
 import { AppNavigationBar } from "./AppNavigationBar.tsx";
 import { Header } from "./Header.tsx";
-import { Projects } from "./Projects.tsx";
+import { FeaturedProjects } from "./FeaturedProjects.tsx";
 import { CommunityContributions } from "./CommunityContributions.tsx";
+import { OtherProjects } from "./OtherProjects.tsx";
+import { MoreAboutMe } from "./MoreAboutMe.tsx";
 
 export const LandingPage: React.FC = () => {
     return (
@@ -20,8 +22,10 @@ export const LandingPage: React.FC = () => {
                 <AppNavigationBar />
                 <Header />
             </Box>
-            <Projects />
+            <FeaturedProjects />
             <CommunityContributions />
+            <OtherProjects />
+            <MoreAboutMe />
         </Box>
     );
 };

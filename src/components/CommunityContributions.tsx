@@ -48,7 +48,6 @@ export const CommunityContributions: React.FC = () => {
                     </Link>.
                 </Typography>
             </CenteredContainer>
-            <Divider width="100%" thickness={2} marginY={2} animateFrom={"right"} />
         </Box>
     );
 };

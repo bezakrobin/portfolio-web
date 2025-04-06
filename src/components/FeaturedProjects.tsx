@@ -4,12 +4,13 @@ import { Box } from "@mui/material";
 import { DoubleLineText } from "./DoubleLineText.tsx";
 import { ParallaxText } from "./ParallaxText.tsx";
 
-export const Projects: React.FC = () => {
+export const FeaturedProjects: React.FC = () => {
     const projects = [
         { projectTitle: "Project One Project One Project One Project One", projectCategory: { line1: "art direction /", line2: "creative development" }, url: "https://www.google.com" },
         { projectTitle: "Project Two Project Two Project Two Project Two", projectCategory: { line1: "branding /", line2: "visual design" }, url: "https://www.youtube.com" },
         { projectTitle: "Project Three Project Three Project Three Project Three", projectCategory: { line1: "ux design /", line2: "web development" }, url: "https://www.instagram.com" },
         { projectTitle: "Project Four Project Four Project Four Project Four", projectCategory: { line1: "ux design /", line2: "web development" }, url: "https://www.facebook.com" },
+        { projectTitle: "Project Five Project Five Project Five Project Five", projectCategory: { line1: "ux design /", line2: "web development" }, url: "https://www.facebook.com" },
     ];
 
     return (
