@@ -5,7 +5,7 @@ import { Header } from "./Header.tsx";
 import { FeaturedProjects } from "./FeaturedProjects.tsx";
 import { CommunityContributions } from "./CommunityContributions.tsx";
 import { OtherProjects } from "./OtherProjects.tsx";
-import { MoreAboutMe } from "./MoreAboutMe.tsx";
+import { InfoSection } from "./InfoSection.tsx";
 
 export const LandingPage: React.FC = () => {
     return (
@@ -25,7 +25,7 @@ export const LandingPage: React.FC = () => {
             <FeaturedProjects />
             <CommunityContributions />
             <OtherProjects />
-            <MoreAboutMe />
+            <InfoSection />
         </Box>
     );
 };

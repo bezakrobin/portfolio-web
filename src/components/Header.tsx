@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import { HeaderText } from "./HeaderText.tsx";
 import { Dash } from "./Dash.tsx";

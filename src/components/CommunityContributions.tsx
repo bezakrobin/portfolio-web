@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Typography, Link } from "@mui/material";
 import { CenteredContainer } from "./CenteredContainer.tsx";
-import { Divider } from "./Divider.tsx";
 
 export const CommunityContributions: React.FC = () => {
     return (
