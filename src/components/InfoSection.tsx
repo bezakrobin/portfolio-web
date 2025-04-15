@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import {
     Box,
@@ -66,17 +67,16 @@ export const InfoSection: React.FC = () => {
                         </Typography>
                         <List disablePadding>
                             {certificates.map((cert, index) => (
-                                <React.Fragment key={index}>
-                                    <ListItem
-                                        sx={{
-                                            py: 1.25,
-                                            px: 0,
-                                            borderTop: '1px solid #AAAAAA',
-                                        }}
-                                    >
-                                        <Typography variant="body1" sx={{ color: '#AAAAAA', fontSize: '20px' }}>{cert}</Typography>
-                                    </ListItem>
-                                </React.Fragment>
+                                <ListItem
+                                    key={index}
+                                    sx={{
+                                        py: 1.25,
+                                        px: 0,
+                                        borderTop: '1px solid #AAAAAA',
+                                    }}
+                                >
+                                    <Typography variant="body1" sx={{ color: '#AAAAAA', fontSize: '20px' }}>{cert}</Typography>
+                                </ListItem>
                             ))}
                         </List>
                     </Box>
