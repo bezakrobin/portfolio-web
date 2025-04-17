@@ -17,6 +17,8 @@ export const Email: React.FC<EmailProps> = ({ email }) => {
             setTimeout(() => { setLabel("click to copy") }, 1500);
         }).catch((err: unknown) => {
             console.error('Failed to copy email: ', err);
+            setLabel("copy failed");
+            setTimeout(() => { setLabel("click to copy") }, 1500);
         });
     };
 
@@ -36,7 +38,7 @@ export const Email: React.FC<EmailProps> = ({ email }) => {
                 sx={{
                     cursor: 'pointer',
                     color: '#AAAAAA',
-                    transition: 'color 0.3s ease margin-bottom 0.2s ease-in-out',
+                    transition: 'color 0.3s ease',
                     fontFamily: "'Poppins SemiBold', sans-serif",
                     fontSize: '30px',
                     pt: 1,
@@ -60,10 +62,9 @@ export const Email: React.FC<EmailProps> = ({ email }) => {
                 position: 'absolute',
                 bottom: '20px',
                 left: '50%',
-                transform: 'translateX(-50%)',
+                transform: isHovered ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(10px)',
                 opacity: isHovered ? 1 : 0,
-                visibility: isHovered ? 'visible' : 'hidden',
-                transition: 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out',
+                transition: 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
                 pointerEvents: isHovered ? 'auto' : 'none',
             }}>
                 <Tooltip
