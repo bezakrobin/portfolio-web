@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import {
     Box,
@@ -10,16 +9,16 @@ import {
 } from '@mui/material';
 
 const certificates = [
-    'SOLOLEARN: Tech for Everyone',
-    'SOLOLEARN: Introduction to SQL',
-    'SOLOLEARN: Introduction to HTML',
-    'SOLOLEARN: Introduction to Python',
-    'SOLOLEARN: Introduction to JavaScript',
-    'SOLOLEARN: Introduction to Java',
-    'SOLOLEARN: Introduction to CSS',
-    'SOLOLEARN: Introduction to C++',
-    'SOLOLEARN: Introduction to C#',
-    'SOLOLEARN: Introduction to C',
+    { id: 'cert-0', name: 'SOLOLEARN: Tech for Everyone' },
+    { id: 'cert-1', name: 'SOLOLEARN: Introduction to SQL' },
+    { id: 'cert-2', name: 'SOLOLEARN: Introduction to HTML' },
+    { id: 'cert-3', name: 'SOLOLEARN: Introduction to Python' },
+    { id: 'cert-4', name: 'SOLOLEARN: Introduction to JavaScript' },
+    { id: 'cert-5', name: 'SOLOLEARN: Introduction to Java' },
+    { id: 'cert-6', name: 'SOLOLEARN: Introduction to CSS' },
+    { id: 'cert-7', name: 'SOLOLEARN: Introduction to C++' },
+    { id: 'cert-8', name: 'SOLOLEARN: Introduction to C#' },
+    { id: 'cert-9', name: 'SOLOLEARN: Introduction to C' }
 ];
 
 export const InfoSection: React.FC = () => {
@@ -35,7 +34,9 @@ export const InfoSection: React.FC = () => {
                 pt: { xs: 10, md: 20 },
             }}
         >
-            <Container maxWidth="lg">
+            <Container
+                maxWidth="lg"
+            >
                 <Box
                     sx={{
                         display: 'flex',
@@ -66,16 +67,16 @@ export const InfoSection: React.FC = () => {
                             Certificates
                         </Typography>
                         <List disablePadding>
-                            {certificates.map((cert, index) => (
+                            {certificates.map((cert) => (
                                 <ListItem
-                                    key={index}
+                                    key={cert.id}
                                     sx={{
                                         py: 1.25,
                                         px: 0,
                                         borderTop: '1px solid #AAAAAA',
                                     }}
                                 >
-                                    <Typography variant="body1" sx={{ color: '#AAAAAA', fontSize: '20px' }}>{cert}</Typography>
+                                    <Typography variant="body1" sx={{ color: '#AAAAAA', fontSize: '20px' }}>{cert.name}</Typography>
                                 </ListItem>
                             ))}
                         </List>

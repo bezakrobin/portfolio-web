@@ -6,11 +6,36 @@ import { ParallaxText } from "./ParallaxText.tsx";
 
 export const FeaturedProjects: React.FC = () => {
     const projects = [
-        { projectTitle: "Project One Project One Project One Project One", projectCategory: { line1: "art direction /", line2: "creative development" }, url: "https://www.google.com" },
-        { projectTitle: "Project Two Project Two Project Two Project Two", projectCategory: { line1: "branding /", line2: "visual design" }, url: "https://www.youtube.com" },
-        { projectTitle: "Project Three Project Three Project Three Project Three", projectCategory: { line1: "ux design /", line2: "web development" }, url: "https://www.instagram.com" },
-        { projectTitle: "Project Four Project Four Project Four Project Four", projectCategory: { line1: "ux design /", line2: "web development" }, url: "https://www.facebook.com" },
-        { projectTitle: "Project Five Project Five Project Five Project Five", projectCategory: { line1: "ux design /", line2: "web development" }, url: "https://www.facebook.com" },
+        {
+            id: 1, // Unique identifier for the project
+            projectTitle: "Project One Project One Project One Project One",
+            projectCategory: { line1: "art direction /", line2: "creative development" },
+            url: "https://www.google.com"
+        },
+        {
+            id: 2, // Unique identifier for the project
+            projectTitle: "Project Two Project Two Project Two Project Two",
+            projectCategory: { line1: "branding /", line2: "visual design" },
+            url: "https://www.youtube.com" // Note: This URL might not be standard
+        },
+        {
+            id: 3, // Unique identifier for the project
+            projectTitle: "Project Three Project Three Project Three Project Three",
+            projectCategory: { line1: "ux design /", line2: "web development" },
+            url: "https://www.instagram.com"
+        },
+        {
+            id: 4, // Unique identifier for the project
+            projectTitle: "Project Four Project Four Project Four Project Four",
+            projectCategory: { line1: "ux design /", line2: "web development" },
+            url: "https://www.facebook.com"
+        },
+        {
+            id: 5, // Unique identifier for the project
+            projectTitle: "Project Five Project Five Project Five Project Five",
+            projectCategory: { line1: "ux design /", line2: "web development" },
+            url: "https://www.facebook.com"
+        },
     ];
 
     return (
@@ -20,13 +45,13 @@ export const FeaturedProjects: React.FC = () => {
             }}
         >
             {projects.map((project, index) => (
-                <React.Fragment key={index}>
+                <React.Fragment key={project.id}>
                     <Divider width="100%" thickness={2} marginY={2} animateFrom={index % 2 ? "right" : "left"} />
                     <Box sx={{ display: "grid", gridTemplateColumns: "2fr 3fr 2fr 2fr", ml: "30px", mr: "30px" }}>
                         <Box />
                         {index === 0 ? (
                             <Box sx={{ pt: "30px" }}>
-                                <DoubleLineText line1="featured" line2={"projects (" + projects.length + ")"} color="#777777" lineHeight={1} />
+                                <DoubleLineText line1="featured" line2={"projects (" + projects.length.toString() + ")"} color="#777777" lineHeight={1} />
                             </Box>
                         ) : (
                             <Box />
