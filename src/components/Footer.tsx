@@ -1,10 +1,33 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import { Divider } from "./Divider.tsx";
 import { ParallaxText } from "./ParallaxText.tsx";
 import { Email } from "./Email.tsx";
+import { NavButton } from "./NavButton.tsx";
 
+const socials = [
+    {
+        id: 'soc-1',
+        name: 'Instagram',
+        url: 'https://www.instagram.com/robin.bezak/'
+    },
+    {
+        id: 'soc-2',
+        name: 'Threads',
+        url: 'https://www.instagram.com/robin.bezak/'
+    },
+    {
+        id: 'soc-3',
+        name: 'TikTok',
+        url: 'https://www.instagram.com/robin.bezak/'
+    },
+    {
+        id: 'soc-4',
+        name: 'GitHub',
+        url: 'https://www.instagram.com/robin.bezak/'
+    }
+];
 
 export const Footer: React.FC = () => {
     const [hours, setHours] = useState<string>('');
@@ -32,7 +55,11 @@ export const Footer: React.FC = () => {
     }, []);
 
     return (
-        <Box>
+        <Box
+            sx={{
+                userSelect: 'none',
+            }}
+        >
             <Divider width="100%" thickness={2} marginY={2} animateFrom="left" />
             <Box
                 sx={{
@@ -95,8 +122,14 @@ export const Footer: React.FC = () => {
                     minWidth: { sm: '25%' },
                     textAlign: 'center',
                     fontFamily: "'Poppins Regular', sans-serif",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 1,
+                    mt: -1,
                 }}>
-                    SOCIAL BUTTONS MAPPING
+                    {socials.map(social => (
+                        <NavButton key={social.id} label={social.name} onClick={ () => window.open(social.url, '_blank', 'noopener,noreferrer') } />
+                    ))}
                 </Box>
 
                 <Box sx={{
@@ -111,7 +144,7 @@ export const Footer: React.FC = () => {
                             fontSize: '16px',
                         }}
                     >
-                        <span style={{ fontWeight: 800 }}>Coded by</span> @Robin Bezak
+                        <span style={{ fontWeight: 800 }}>Coded by</span> Robin Bezak
                     </Typography>
                 </Box>
             </Box>

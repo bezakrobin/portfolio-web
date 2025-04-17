@@ -32,6 +32,7 @@ export const InfoSection: React.FC = () => {
                 pb: 12,
                 px: 3,
                 pt: { xs: 10, md: 20 },
+                userSelect: 'none',
             }}
         >
             <Container
