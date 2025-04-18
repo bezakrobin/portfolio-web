@@ -46,7 +46,7 @@ export const FeaturedProjects: React.FC = () => {
         >
             {projects.map((project, index) => (
                 <React.Fragment key={project.id}>
-                    <Divider width="100%" thickness={2} marginY={2} animateFrom={index % 2 ? "right" : "left"} />
+                    <Divider width="100%" thickness={2} marginY={2} />
                     <Box sx={{ display: "grid", gridTemplateColumns: "2fr 3fr 2fr 2fr", ml: "30px", mr: "30px" }}>
                         <Box />
                         {index === 0 ? (
@@ -80,7 +80,7 @@ export const FeaturedProjects: React.FC = () => {
                         />
                     </Box>
                     {projects.length === index + 1 ? (
-                        <Divider width="100%" thickness={2} marginY={2} animateFrom={index % 2 ? "left" : "right"} />
+                        <Divider width="100%" thickness={2} marginY={2} />
                     ) : ( <> </> )}
                 </React.Fragment>
             ))}
