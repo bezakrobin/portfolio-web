@@ -56,6 +56,7 @@ export const Footer: React.FC = () => {
 
     return (
         <Box
+            id="contact-section"
             sx={{
                 userSelect: 'none',
             }}
