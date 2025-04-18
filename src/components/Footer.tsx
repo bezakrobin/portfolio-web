@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
                 userSelect: 'none',
             }}
         >
-            <Divider width="100%" thickness={2} marginY={2} animateFrom="left" />
+            <Divider width="100%" thickness={2} marginY={2} />
             <Box
                 sx={{
                     pt: 8,
@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
                     <ParallaxText text={'LET’S TALK — LET’S COLLABORATE — SAY HELLO — WANNA BE STARTING SOMETHING? — '} fontSize={'260px'} speed={0} />
                 </Marquee>
             </Box>
-            <Divider width="100%" thickness={2} marginY={2} animateFrom="right" />
+            <Divider width="100%" thickness={2} marginY={2} />
 
             <Email email="robin.bezak.99@gmail.com" />
 

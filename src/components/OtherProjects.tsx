@@ -19,7 +19,7 @@ export const OtherProjects: React.FC = () => {
         >
             {projects.map((project, index) => (
                 <React.Fragment key={index}>
-                    <Divider width="100%" thickness={2} marginY={2} animateFrom={index % 2 ? "right" : "left"} />
+                    <Divider width="100%" thickness={2} marginY={2} />
                     <Box sx={{ display: "grid", gridTemplateColumns: "2fr 3fr 2fr 2fr", ml: "30px", mr: "30px" }}>
                         <Box />
                         <Box />
@@ -47,7 +47,7 @@ export const OtherProjects: React.FC = () => {
                         />
                     </Box>
                     {projects.length === index + 1 ? (
-                        <Divider width="100%" thickness={2} marginY={2} animateFrom={index % 2 ? "left" : "right"} />
+                        <Divider width="100%" thickness={2} marginY={2} />
                     ) : ( <> </> )}
                 </React.Fragment>
             ))}

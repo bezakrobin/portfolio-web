@@ -1,43 +1,59 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
-import gsap from "gsap";
+import { useDividerDirection } from '../contexts/DividerDirectionContext.tsx';
 
 interface DividerProps {
     thickness?: number;
     marginY?: number;
     width?: string;
-    animateFrom?: "left" | "right";
 }
 
-export const Divider: React.FC<DividerProps> = ({ thickness = 2, marginY = 4, width = "100%", animateFrom = "left" }) => {
+const BASE_CLASS = 'divider-base';
+const ANIMATE_CLASS = 'divider-animate';
+
+export const Divider: React.FC<DividerProps> = ({
+                                                    thickness = 2,
+                                                    marginY = 4,
+                                                    width = "100%",
+                                                }) => {
     const dividerRef = useRef<HTMLDivElement | null>(null);
-    const hasAnimated = useRef(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const { getNextDirection } = useDividerDirection();
+    const [animateFromDirection, setAnimateFromDirection] = useState<'left' | 'right' | null>(null);
 
     useEffect(() => {
+        const direction = getNextDirection();
+        setAnimateFromDirection(direction);
+    }, [getNextDirection]);
+
+    useEffect(() => {
+        if (!animateFromDirection || !dividerRef.current) return;
+        const currentRef = dividerRef.current;
+
         const observer = new IntersectionObserver(
             (entries) => {
-                if (entries[0].isIntersecting && dividerRef.current && !hasAnimated.current) {
-                    hasAnimated.current = true;
-                    gsap.fromTo(
-                        dividerRef.current,
-                        { scaleX: 0 },
-                        { scaleX: 1, duration: 2, ease: "power2.out" }
-                    );
+                if (entries[0].isIntersecting && !isVisible) {
+                    setIsVisible(true);
+                    observer.unobserve(currentRef);
                 }
             },
             { threshold: 0.1 }
         );
 
-        if (dividerRef.current) {
-            observer.observe(dividerRef.current);
-        }
+        observer.observe(currentRef);
 
         return () => {
-            if (dividerRef.current) {
-                observer.unobserve(dividerRef.current);
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
-    }, []);
+    }, [animateFromDirection]);
+
+    if (!animateFromDirection) {
+        return null;
+    }
+
+    const origin = animateFromDirection === "right" ? "100% 50%" : "0% 50%";
 
     return (
         <Box
@@ -45,15 +61,38 @@ export const Divider: React.FC<DividerProps> = ({ thickness = 2, marginY = 4, wi
                 px: "40px",
             }}
         >
+            <style>
+                {`
+                @keyframes scaleXAnimation {
+                    from {
+                        transform: scaleX(0);
+                    }
+                    to {
+                        transform: scaleX(1);
+                    }
+                }
+
+                .${BASE_CLASS} {
+                    transform: scaleX(0);
+                }
+
+                .${ANIMATE_CLASS} {
+                    animation-name: scaleXAnimation;
+                    animation-duration: 1s;
+                    animation-timing-function: ease-out;
+                    animation-fill-mode: forwards;
+                }
+                `}
+            </style>
             <Box
                 ref={dividerRef}
+                className={`${BASE_CLASS} ${isVisible ? ANIMATE_CLASS : ''}`}
                 sx={{
                     height: thickness,
                     backgroundColor: "#777777",
                     marginY: marginY,
                     width: width,
-                    transform: "scaleX(0)",
-                    transformOrigin: animateFrom === "right" ? "100% 50%" : "0% 50%",
+                    transformOrigin: origin,
                 }}
             />
         </Box>
