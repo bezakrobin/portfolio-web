@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, GlobalStyles } from "@mui/material";
+import { Box } from "@mui/material";
 import { AppNavigationBar } from "./AppNavigationBar.tsx";
 import { Header } from "./Header.tsx";
 import { FeaturedProjects } from "./FeaturedProjects.tsx";
@@ -8,13 +8,9 @@ import { OtherProjects } from "./OtherProjects.tsx";
 import { InfoSection } from "./InfoSection.tsx";
 import { Footer } from "./Footer.tsx";
 
-const globalScrollBehavior = <GlobalStyles styles={{ html: { scrollBehavior: 'smooth' } }} />;
-
 export const LandingPage: React.FC = () => {
     return (
         <Box>
-            {globalScrollBehavior}
-
             <Box
                 sx={{
                     display: "flex",
