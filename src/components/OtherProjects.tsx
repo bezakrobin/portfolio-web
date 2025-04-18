@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Divider } from "./Divider.tsx";
 import { Box } from "@mui/material";
 import { DoubleLineText } from "./DoubleLineText.tsx";
@@ -6,10 +6,38 @@ import { ParallaxText } from "./ParallaxText.tsx";
 
 export const OtherProjects: React.FC = () => {
     const projects = [
-        { projectTitle: "Project One Project One Project One Project One", projectCategory: { line1: "art direction /", line2: "creative development" }, url: "https://www.google.com" },
-        { projectTitle: "Project Two Project Two Project Two Project Two", projectCategory: { line1: "branding /", line2: "visual design" }, url: "https://www.youtube.com" },
-        { projectTitle: "Project Three Project Three Project Three Project Three", projectCategory: { line1: "ux design /", line2: "web development" }, url: "https://www.instagram.com" },
+        {
+            id: 1, // Unique identifier for the project
+            projectTitle: "Project One Project One Project One Project One",
+            projectCategory: { line1: "art direction /", line2: "creative development" },
+            url: "https://www.google.com"
+        },
+        {
+            id: 2, // Unique identifier for the project
+            projectTitle: "Project Two Project Two Project Two Project Two",
+            projectCategory: { line1: "branding /", line2: "visual design" },
+            url: "https://www.youtube.com" // Note: This URL might not be standard
+        },
+        {
+            id: 3, // Unique identifier for the project
+            projectTitle: "Project Three Project Three Project Three Project Three",
+            projectCategory: { line1: "ux design /", line2: "web development" },
+            url: "https://www.instagram.com"
+        },
+        {
+            id: 4, // Unique identifier for the project
+            projectTitle: "Project Four Project Four Project Four Project Four",
+            projectCategory: { line1: "ux design /", line2: "web development" },
+            url: "https://www.facebook.com"
+        },
+        {
+            id: 5, // Unique identifier for the project
+            projectTitle: "Project Five Project Five Project Five Project Five",
+            projectCategory: { line1: "ux design /", line2: "web development" },
+            url: "https://www.facebook.com"
+        },
     ];
+    const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
 
     return (
         <Box
@@ -18,14 +46,20 @@ export const OtherProjects: React.FC = () => {
             }}
         >
             {projects.map((project, index) => (
-                <React.Fragment key={index}>
+                <React.Fragment key={project.id}>
                     <Divider width="100%" thickness={2} marginY={2} />
                     <Box sx={{ display: "grid", gridTemplateColumns: "2fr 3fr 2fr 2fr", ml: "30px", mr: "30px" }}>
                         <Box />
                         <Box />
                         <Box />
                         <Box sx={{ pt: "30px" }}>
-                            <DoubleLineText line1={project.projectCategory.line1} line2={project.projectCategory.line2} color="#777777" lineHeight={1} />
+                            <DoubleLineText
+                                line1={project.projectCategory.line1}
+                                line2={project.projectCategory.line2}
+                                color="#777777"
+                                lineHeight={1}
+                                isHovered={hoveredProjectId === project.id}
+                            />
                         </Box>
                     </Box>
                     <Box
@@ -33,6 +67,8 @@ export const OtherProjects: React.FC = () => {
                             py: "40px",
                             my: "40px"
                         }}
+                        onMouseEnter={() => setHoveredProjectId(project.id)}
+                        onMouseLeave={() => setHoveredProjectId(null)}
                         onClick={() => {
                             if (project.url) {
                                 window.open(project.url, "_blank");

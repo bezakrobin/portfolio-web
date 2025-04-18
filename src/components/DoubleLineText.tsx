@@ -6,6 +6,7 @@ interface TextLogoProps {
     line2: string;
     color: string;
     lineHeight?: number,
+    isHovered?: boolean;
 }
 
 export const DoubleLineText: React.FC<TextLogoProps> = ({
@@ -13,13 +14,17 @@ export const DoubleLineText: React.FC<TextLogoProps> = ({
     line2,
     color,
     lineHeight = 1.5,
+    isHovered = false,
 }) => {
     return (
         <Box
             textAlign="left"
             textTransform="uppercase"
-            color={color}
             fontSize="12px"
+            sx={{
+                transition: 'color 0.3s ease',
+                color: isHovered ? '#AAAAAA' : color,
+            }}
         >
             <Typography
                 sx={{

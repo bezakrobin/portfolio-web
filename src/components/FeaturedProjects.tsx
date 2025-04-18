@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Divider } from "./Divider.tsx";
 import { Box } from "@mui/material";
 import { DoubleLineText } from "./DoubleLineText.tsx";
@@ -37,6 +37,7 @@ export const FeaturedProjects: React.FC = () => {
             url: "https://www.facebook.com"
         },
     ];
+    const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
 
     return (
         <Box
@@ -58,7 +59,13 @@ export const FeaturedProjects: React.FC = () => {
                         )}
                         <Box />
                         <Box sx={{ pt: "30px" }}>
-                            <DoubleLineText line1={project.projectCategory.line1} line2={project.projectCategory.line2} color="#777777" lineHeight={1} />
+                            <DoubleLineText
+                                line1={project.projectCategory.line1}
+                                line2={project.projectCategory.line2}
+                                color="#777777"
+                                lineHeight={1}
+                                isHovered={hoveredProjectId === project.id}
+                            />
                         </Box>
                     </Box>
                     <Box
@@ -66,6 +73,8 @@ export const FeaturedProjects: React.FC = () => {
                             py: "40px",
                             my: "40px"
                         }}
+                        onMouseEnter={() => setHoveredProjectId(project.id)}
+                        onMouseLeave={() => setHoveredProjectId(null)}
                         onClick={() => {
                             if (project.url) {
                                 window.open(project.url, "_blank");
