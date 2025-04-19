@@ -18,9 +18,10 @@ interface Project {
 
 interface FeaturedProjectsProps {
     projects: Project[];
+    sectionTitle: string;
 }
 
-export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects }) => {
+export const Projects: React.FC<FeaturedProjectsProps> = ({ projects, sectionTitle }) => {
     const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
 
     return (
@@ -36,7 +37,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects }) 
                         <Box />
                         {index === 0 ? (
                             <Box sx={{ pt: "30px" }}>
-                                <DoubleLineText line1="featured" line2={"projects (" + projects.length.toString() + ")"} color="#777777" lineHeight={1} />
+                                <DoubleLineText line1={sectionTitle.split(' ')[0]} line2={sectionTitle.split(' ')[1] + " (" + projects.length.toString() + ")"} color="#777777" lineHeight={1} />
                             </Box>
                         ) : (
                             <Box />

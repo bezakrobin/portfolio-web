@@ -2,9 +2,8 @@ import React from "react";
 import { Box } from "@mui/material";
 import { AppNavigationBar } from "./AppNavigationBar.tsx";
 import { Header } from "./Header.tsx";
-import { FeaturedProjects } from "./FeaturedProjects.tsx";
+import { Projects } from "./Projects.tsx";
 import { CommunityContributions } from "./CommunityContributions.tsx";
-import { OtherProjects } from "./OtherProjects.tsx";
 import { InfoSection } from "./InfoSection.tsx";
 import { Footer } from "./Footer.tsx";
 import {
@@ -19,9 +18,9 @@ export const LandingPage: React.FC = () => {
         <Box>
             <AppNavigationBar />
             <Header />
-            <FeaturedProjects projects={featuredProjects} />
+            <Projects projects={featuredProjects} sectionTitle="Featured Projects" />
             <CommunityContributions />
-            <OtherProjects projects={otherProjects} />
+            <Projects projects={otherProjects} sectionTitle="Other Projects" />
             <InfoSection certificates={certificates} />
             <Footer socials={socials} />
         </Box>
