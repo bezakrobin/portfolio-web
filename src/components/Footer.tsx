@@ -1,35 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import { Box, Typography } from "@mui/material";
+import {Box, Link, Typography} from "@mui/material";
 import Marquee from "react-fast-marquee";
 import { Divider } from "./Divider.tsx";
 import { ParallaxText } from "./ParallaxText.tsx";
 import { Email } from "./Email.tsx";
 import { NavButton } from "./NavButton.tsx";
 
-const socials = [
-    {
-        id: 'soc-1',
-        name: 'Instagram',
-        url: 'https://www.instagram.com/robin.bezak/'
-    },
-    {
-        id: 'soc-2',
-        name: 'Threads',
-        url: 'https://www.instagram.com/robin.bezak/'
-    },
-    {
-        id: 'soc-3',
-        name: 'TikTok',
-        url: 'https://www.instagram.com/robin.bezak/'
-    },
-    {
-        id: 'soc-4',
-        name: 'GitHub',
-        url: 'https://www.instagram.com/robin.bezak/'
-    }
-];
+interface SocialLink {
+    id: string;
+    name: string;
+    url: string;
+}
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+    socials: SocialLink[];
+}
+
+export const Footer: React.FC<FooterProps> = ({ socials }) => {
     const [hours, setHours] = useState<string>('');
     const [minutes, setMinutes] = useState<string>('');
     const [showColon, setShowColon] = useState<boolean>(true);
@@ -56,21 +43,25 @@ export const Footer: React.FC = () => {
 
     return (
         <Box
+            id="contact-section"
             sx={{
                 userSelect: 'none',
             }}
         >
-            <Divider width="100%" thickness={2} marginY={2} animateFrom="left" />
+            <Divider width="100%" thickness={2} marginY={2} />
             <Box
                 sx={{
                     pt: 8,
+                }}
+                onClick={() => {
+                    window.location.href = 'mailto:robin.bezak.99@gmail.com?subject=Inquiry%20from%20Portfolio%20Website';
                 }}
             >
                 <Marquee speed={100} gradient={false} pauseOnHover={true}>
                     <ParallaxText text={'LET’S TALK — LET’S COLLABORATE — SAY HELLO — WANNA BE STARTING SOMETHING? — '} fontSize={'260px'} speed={0} />
                 </Marquee>
             </Box>
-            <Divider width="100%" thickness={2} marginY={2} animateFrom="right" />
+            <Divider width="100%" thickness={2} marginY={2} />
 
             <Email email="robin.bezak.99@gmail.com" />
 
@@ -144,7 +135,18 @@ export const Footer: React.FC = () => {
                             fontSize: '16px',
                         }}
                     >
-                        <span style={{ fontWeight: 800 }}>Coded by</span> Robin Bezak
+                        <span style={{ fontWeight: 800 }}>Coded by</span>
+                        <Link href="https://github.com/bezakrobin" target="_blank" rel="noopener noreferrer" color="inherit" underline="none"
+                              sx={{
+                                  color: '#777777',
+                                  transition: 'color 0.3s ease',
+                                  '&:hover': {
+                                      color: '#CB450C'
+                                  }
+                              }}
+                        >
+                            {' '}Robin Bezak
+                        </Link>
                     </Typography>
                 </Box>
             </Box>

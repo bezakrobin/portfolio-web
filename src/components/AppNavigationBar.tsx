@@ -3,6 +3,9 @@ import { AppBar, Toolbar, Box } from "@mui/material";
 import { DoubleLineText } from "./DoubleLineText.tsx";
 import { NavButton } from "./NavButton.tsx";
 import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 export const AppNavigationBar: React.FC = () => {
     const navRef = useRef<HTMLDivElement | null>(null);
@@ -16,6 +19,14 @@ export const AppNavigationBar: React.FC = () => {
             );
         }
     }, []);
+
+    const handleContactClick = () => {
+        gsap.to(window, {
+            duration: 4,
+            scrollTo: "#contact-section",
+            ease: "power2.inOut",
+        });
+    };
 
     return (
         <Box ref={navRef} sx={{ position: "absolute", width: "100%", zIndex: 1000, top: 0, transform: "translateY(-100px)" }}>
@@ -32,7 +43,7 @@ export const AppNavigationBar: React.FC = () => {
                     <DoubleLineText line1="almost full stack dev" line2="folio / 2024 - 2025" color="#777777" />
                     <Box />
                     <Box sx={{ justifySelf: "end" }}>
-                        <NavButton label="contact" />
+                        <NavButton label="contact" onClick={handleContactClick} />
                     </Box>
                 </Toolbar>
             </AppBar>

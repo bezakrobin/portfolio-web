@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, GlobalStyles } from "@mui/material";
+import { Box } from "@mui/material";
 import { AppNavigationBar } from "./AppNavigationBar.tsx";
 import { Header } from "./Header.tsx";
 import { FeaturedProjects } from "./FeaturedProjects.tsx";
@@ -7,14 +7,16 @@ import { CommunityContributions } from "./CommunityContributions.tsx";
 import { OtherProjects } from "./OtherProjects.tsx";
 import { InfoSection } from "./InfoSection.tsx";
 import { Footer } from "./Footer.tsx";
-
-const globalScrollBehavior = <GlobalStyles styles={{ html: { scrollBehavior: 'smooth' } }} />;
+import {
+    certificates,
+    featuredProjects,
+    otherProjects,
+    socials
+} from "../data/data.ts";
 
 export const LandingPage: React.FC = () => {
     return (
         <Box>
-            {globalScrollBehavior}
-
             <Box
                 sx={{
                     display: "flex",
@@ -27,11 +29,11 @@ export const LandingPage: React.FC = () => {
                 <AppNavigationBar />
                 <Header />
             </Box>
-            <FeaturedProjects />
+            <FeaturedProjects projects={featuredProjects} />
             <CommunityContributions />
-            <OtherProjects />
-            <InfoSection />
-            <Footer />
+            <OtherProjects projects={otherProjects} />
+            <InfoSection certificates={certificates} />
+            <Footer socials={socials} />
         </Box>
     );
 };
