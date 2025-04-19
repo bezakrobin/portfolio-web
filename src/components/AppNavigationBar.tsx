@@ -4,6 +4,7 @@ import { DoubleLineText } from "./DoubleLineText.tsx";
 import { NavButton } from "./NavButton.tsx";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { Status } from "./Status.tsx";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -41,7 +42,9 @@ export const AppNavigationBar: React.FC = () => {
                 <Toolbar sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", pt: "20px", ml: "30px", mr: "30px" }}>
                     <DoubleLineText line1="robin" line2="bezak" color="#AAAAAA" />
                     <DoubleLineText line1="almost full stack dev" line2="folio / 2024 - 2025" color="#777777" />
-                    <Box />
+                    <Box sx={{ justifySelf: "center" }}>
+                        <Status />
+                    </Box>
                     <Box sx={{ justifySelf: "end" }}>
                         <NavButton label="contact" onClick={handleContactClick} />
                     </Box>

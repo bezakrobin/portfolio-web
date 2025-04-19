@@ -81,7 +81,7 @@ export const Header: React.FC = () => {
         <Box
             sx={{
                 width: "100%",
-                height: "80vh",
+                height: "100vh",
                 marginTop: "100px",
                 display: "flex",
                 flexDirection: "column",

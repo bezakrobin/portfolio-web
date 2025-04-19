@@ -17,18 +17,8 @@ import {
 export const LandingPage: React.FC = () => {
     return (
         <Box>
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "100vh",
-                    backgroundColor: "#111111",
-                }}
-            >
-                <AppNavigationBar />
-                <Header />
-            </Box>
+            <AppNavigationBar />
+            <Header />
             <FeaturedProjects projects={featuredProjects} />
             <CommunityContributions />
             <OtherProjects projects={otherProjects} />

@@ -99,3 +99,5 @@ export const socials = [
         url: 'https://github.com/bezakrobin'
     }
 ];
+
+export const isAvailableForHire: boolean = false;
