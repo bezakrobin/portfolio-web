@@ -9,25 +9,22 @@ import {
 } from '@mui/material';
 import gsap from "gsap";
 
-const certificates = [
-    { id: 'cert-0', name: 'SOLOLEARN: Tech for Everyone' },
-    { id: 'cert-1', name: 'SOLOLEARN: Introduction to SQL' },
-    { id: 'cert-2', name: 'SOLOLEARN: Introduction to HTML' },
-    { id: 'cert-3', name: 'SOLOLEARN: Introduction to Python' },
-    { id: 'cert-4', name: 'SOLOLEARN: Introduction to JavaScript' },
-    { id: 'cert-5', name: 'SOLOLEARN: Introduction to Java' },
-    { id: 'cert-6', name: 'SOLOLEARN: Introduction to CSS' },
-    { id: 'cert-7', name: 'SOLOLEARN: Introduction to C++' },
-    { id: 'cert-8', name: 'SOLOLEARN: Introduction to C#' },
-    { id: 'cert-9', name: 'SOLOLEARN: Introduction to C' }
-];
+interface Certificate {
+    id: string;
+    name: string;
+    image_url?: string;
+}
+
+interface InfoSectionProps {
+    certificates: Certificate[];
+}
 
 const CERTIFICATE_ITEM_CLASS = 'certificate-list-item';
 const ANIMATE_TITLE_CLASS = 'animate-title';
 const ANIMATE_TEXT_BLOCK_CLASS = 'animate-text-block';
 const ANIMATE_FOOTER_CLASS = 'animate-footer';
 
-export const InfoSection: React.FC = () => {
+export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
     const columnGap = 15;
     const sectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -108,6 +105,13 @@ export const InfoSection: React.FC = () => {
 
     }, []);
 
+    const handleGetInTouchClick = () => {
+        gsap.to(window, {
+            duration: 0.6,
+            scrollTo: "#contact-section",
+            ease: "power2.inOut",
+        });
+    };
 
     return (
         <Box
@@ -237,7 +241,7 @@ export const InfoSection: React.FC = () => {
                                 className={ANIMATE_TEXT_BLOCK_CLASS}
                                 variant="body1" sx={{ lineHeight: 1.6, fontSize: '20px' }}>
                                 I listen to Drum & Bass and Alternative music all the time. Check out what I'm into on my{' '}
-                                <Link href={"#spotify"} target="_blank" rel="noopener noreferrer" color="inherit" underline="none"
+                                <Link href={"https://open.spotify.com/playlist/5e65hMw6lgqkxScPH5E6ol"} target="_blank" rel="noopener noreferrer" color="inherit" underline="none"
                                     sx={{
                                         color: '#AAAAAA',
                                         fontFamily: 'Poppins SemiBold, sans-serif',
@@ -251,8 +255,9 @@ export const InfoSection: React.FC = () => {
                                     Spotify PLAYLIST
                                 </Link>
                                 . I also love travelling and good food—work with me so I can fund this!{' '}
-                                <Link href={"#get-in-touch"} target="_blank" rel="noopener noreferrer" color="inherit" underline="none"
+                                <Link color="inherit" underline="none"
                                     sx={{
+                                        cursor: 'pointer',
                                         color: '#AAAAAA',
                                         fontFamily: 'Poppins SemiBold, sans-serif',
                                         textTransform: 'uppercase',
@@ -261,6 +266,7 @@ export const InfoSection: React.FC = () => {
                                             color: '#CB450C'
                                         }
                                     }}
+                                    onClick={handleGetInTouchClick}
                                 >
                                     GET IN TOUCH
                                 </Link>

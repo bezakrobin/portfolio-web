@@ -7,6 +7,12 @@ import { CommunityContributions } from "./CommunityContributions.tsx";
 import { OtherProjects } from "./OtherProjects.tsx";
 import { InfoSection } from "./InfoSection.tsx";
 import { Footer } from "./Footer.tsx";
+import {
+    certificates,
+    featuredProjects,
+    otherProjects,
+    socials
+} from "../data/data.ts";
 
 export const LandingPage: React.FC = () => {
     return (
@@ -23,11 +29,11 @@ export const LandingPage: React.FC = () => {
                 <AppNavigationBar />
                 <Header />
             </Box>
-            <FeaturedProjects />
+            <FeaturedProjects projects={featuredProjects} />
             <CommunityContributions />
-            <OtherProjects />
-            <InfoSection />
-            <Footer />
+            <OtherProjects projects={otherProjects} />
+            <InfoSection certificates={certificates} />
+            <Footer socials={socials} />
         </Box>
     );
 };

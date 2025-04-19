@@ -4,39 +4,23 @@ import { Box } from "@mui/material";
 import { DoubleLineText } from "./DoubleLineText.tsx";
 import { ParallaxText } from "./ParallaxText.tsx";
 
-export const FeaturedProjects: React.FC = () => {
-    const projects = [
-        {
-            id: 1, // Unique identifier for the project
-            projectTitle: "Project One Project One Project One Project One",
-            projectCategory: { line1: "art direction /", line2: "creative development" },
-            url: "https://www.google.com"
-        },
-        {
-            id: 2, // Unique identifier for the project
-            projectTitle: "Project Two Project Two Project Two Project Two",
-            projectCategory: { line1: "branding /", line2: "visual design" },
-            url: "https://www.youtube.com" // Note: This URL might not be standard
-        },
-        {
-            id: 3, // Unique identifier for the project
-            projectTitle: "Project Three Project Three Project Three Project Three",
-            projectCategory: { line1: "ux design /", line2: "web development" },
-            url: "https://www.instagram.com"
-        },
-        {
-            id: 4, // Unique identifier for the project
-            projectTitle: "Project Four Project Four Project Four Project Four",
-            projectCategory: { line1: "ux design /", line2: "web development" },
-            url: "https://www.facebook.com"
-        },
-        {
-            id: 5, // Unique identifier for the project
-            projectTitle: "Project Five Project Five Project Five Project Five",
-            projectCategory: { line1: "ux design /", line2: "web development" },
-            url: "https://www.facebook.com"
-        },
-    ];
+interface ProjectCategory {
+    line1: string;
+    line2: string;
+}
+
+interface Project {
+    id: number;
+    projectTitle: string;
+    projectCategory: ProjectCategory;
+    url: string;
+}
+
+interface FeaturedProjectsProps {
+    projects: Project[];
+}
+
+export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects }) => {
     const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
 
     return (
@@ -82,7 +66,7 @@ export const FeaturedProjects: React.FC = () => {
                         }}
                     >
                         <ParallaxText
-                            text={project.projectTitle}
+                            text={Array(5).fill(project.projectTitle).join(" ")}
                             fontSize={"260px"}
                             direction={index % 2 ? "right" : "left"}
                             speed={1}
