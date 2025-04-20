@@ -42,34 +42,34 @@ export const Header: React.FC = () => {
 
         if (fullRef.current && stackRef.current && dashRef.current) {
             gsap.to(fullRef.current, {
-                x: "-100vw",
+                x: "-50vw",
                 scrollTrigger: {
                     trigger: fullRef.current,
                     start: "0%",
-                    end: "50%",
+                    end: "100%",
                     scrub: 1,
                     pin: false,
                 },
             });
 
             gsap.to(stackRef.current, {
-                x: "100vw",
+                x: "50vw",
                 scrollTrigger: {
                     trigger: stackRef.current,
                     start: "0%",
-                    end: "50%",
+                    end: "100%",
                     scrub: 1,
                     pin: false,
                 },
             });
 
             gsap.to(dashRef.current, {
-                scaleX: 1.3,
+                scaleX: 7,
                 duration: 2,
                 scrollTrigger: {
                     trigger: dashRef.current,
-                    start: "top 20%",
-                    end: "30%",
+                    start: "top 15%",
+                    end: "100%",
                     scrub: 0.3,
                     pin: false,
                 },
