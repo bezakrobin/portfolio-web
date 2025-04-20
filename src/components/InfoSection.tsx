@@ -291,7 +291,7 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
                     component="div"
                     sx={{
                         textAlign: 'center',
-                        maxWidth: '1100px',
+                        maxWidth: '800px',
                         mx: 'auto',
                         mb: '50px',
                     }}
