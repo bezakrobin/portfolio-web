@@ -19,13 +19,15 @@ interface Project {
 interface FeaturedProjectsProps {
     projects: Project[];
     sectionTitle: string;
+    id?: string;
 }
 
-export const Projects: React.FC<FeaturedProjectsProps> = ({ projects, sectionTitle }) => {
+export const Projects: React.FC<FeaturedProjectsProps> = ({ projects, sectionTitle, id }) => {
     const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
 
     return (
         <Box
+            id={id}
             sx={{
                 userSelect: "none",
             }}

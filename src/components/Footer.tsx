@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Link, Typography} from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import { Divider } from "./Divider.tsx";
 import { ParallaxText } from "./ParallaxText.tsx";

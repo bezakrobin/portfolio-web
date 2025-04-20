@@ -18,7 +18,7 @@ export const LandingPage: React.FC = () => {
         <Box>
             <AppNavigationBar />
             <Header />
-            <Projects projects={featuredProjects} sectionTitle="Featured Projects" />
+            <Projects id={'projects-section'} projects={featuredProjects} sectionTitle="Featured Projects" />
             <CommunityContributions />
             <Projects projects={otherProjects} sectionTitle="Other Projects" />
             <InfoSection certificates={certificates} />

@@ -8,6 +8,8 @@ import {
     Link
 } from '@mui/material';
 import gsap from "gsap";
+import { InfiniteIconCarousel } from "./InfiniteIconCarousel.tsx";
+import { languages } from '../data/data.ts';
 
 interface Certificate {
     id: string;
@@ -34,9 +36,10 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
 
         const certsCol = sectionElement.querySelector('#certs-col');
         const interestsCol = sectionElement.querySelector('#interests-col');
+        const languagesFrameworksBox = sectionElement.querySelector('#languages-frameworks');
         const footerBox = sectionElement.querySelector('#footer-box');
 
-        if (!certsCol || !interestsCol || !footerBox) {
+        if (!certsCol || !interestsCol || !languagesFrameworksBox || !footerBox) {
             console.error("Required section container IDs not found for animation setup.");
             const allAnimatableElements = sectionElement.querySelectorAll(`.${ANIMATE_TITLE_CLASS}, .${CERTIFICATE_ITEM_CLASS}, .${ANIMATE_TEXT_BLOCK_CLASS}, .${ANIMATE_FOOTER_CLASS}`);
             if (allAnimatableElements.length > 0) {
@@ -67,6 +70,11 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
                             targets = title ? [title, ...Array.from(items)] : [...Array.from(items)];
                             stagger = 0.1;
                         } else if (container.id === 'interests-col') {
+                            const interestsTitles = container.querySelectorAll<Element>(`.${ANIMATE_TITLE_CLASS}`);
+                            const interestsTexts = container.querySelectorAll<Element>(`.${ANIMATE_TEXT_BLOCK_CLASS}`);
+                            targets = [...Array.from(interestsTitles), ...Array.from(interestsTexts)];
+                            stagger = 0.1;
+                        } else if (container.id === 'languages-frameworks') {
                             const titles = container.querySelectorAll<Element>(`.${ANIMATE_TITLE_CLASS}`);
                             const texts = container.querySelectorAll<Element>(`.${ANIMATE_TEXT_BLOCK_CLASS}`);
                             targets = [...Array.from(titles), ...Array.from(texts)];
@@ -74,13 +82,14 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
                         } else if (container.id === 'footer-box') {
                             const footerElements = container.querySelectorAll<Element>(`.${ANIMATE_FOOTER_CLASS}`);
                             targets = [...Array.from(footerElements)];
+                            stagger = 0.1;
                         }
 
                         if (targets.length > 0) {
                             gsap.to(targets, {
                                 opacity: 1,
                                 y: 0,
-                                duration: 0.6,
+                                duration: 1,
                                 ease: 'power2.out',
                                 stagger: stagger,
                                 overwrite: true,
@@ -95,6 +104,7 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
 
         observerContainers.observe(certsCol);
         observerContainers.observe(interestsCol);
+        observerContainers.observe(languagesFrameworksBox);
         observerContainers.observe(footerBox);
 
         return () => {
@@ -133,7 +143,7 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
                     sx={{
                         display: 'flex',
                         flexDirection: { xs: 'column', md: 'row' },
-                        mb: { xs: 20, md: 40 },
+                        mb: { xs: 5, md: 10 },
                     }}
                 >
                     <Box
@@ -273,6 +283,34 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
                                 {' '}to know more about me.
                             </Typography>
                         </Box>
+                    </Box>
+                </Box>
+
+                <Box
+                    id="languages-frameworks"
+                    component="div"
+                    sx={{
+                        textAlign: 'center',
+                        maxWidth: '1100px',
+                        mx: 'auto',
+                        mb: '50px',
+                    }}
+                >
+                    <Typography
+                        className={ANIMATE_TITLE_CLASS}
+                        variant="overline" component="h2" gutterBottom
+                        sx={{
+                            color: '#AAAAAA',
+                            letterSpacing: '1px',
+                            textTransform: 'uppercase',
+                            fontSize: '15px',
+                            fontFamily: 'Poppins Regular, sans-serif',
+                        }}
+                    >
+                        Languages & Frameworks I use
+                    </Typography>
+                    <Box className={ANIMATE_TEXT_BLOCK_CLASS}>
+                        <InfiniteIconCarousel languages={languages} />
                     </Box>
                 </Box>
 
