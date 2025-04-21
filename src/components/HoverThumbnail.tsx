@@ -40,7 +40,7 @@ export const HoverThumbnail: React.FC<HoverThumbnailProps> = ({ imageUrl, positi
         transform: 'translate(15px, 15px)',
         width: '600px',
         height: 'auto',
-        aspectRatio: '16 / 9',
+        aspectRatio: '4 / 3',
         zIndex: 1500,
         pointerEvents: 'none',
         borderRadius: '4px',
