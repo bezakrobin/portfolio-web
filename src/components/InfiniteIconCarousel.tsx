@@ -1,11 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Marquee from "react-fast-marquee";
-
-interface Language {
-    name: string;
-    icon: string;
-}
+import { Language } from '../types';
 
 interface InfiniteIconCarouselProps {
     speed?: number;

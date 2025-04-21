@@ -4,7 +4,7 @@ import { AppNavigationBar } from "./AppNavigationBar.tsx";
 import { Header } from "./Header.tsx";
 import { Projects } from "./Projects.tsx";
 import { CommunityContributions } from "./CommunityContributions.tsx";
-import { InfoSection } from "./InfoSection.tsx";
+import { InfoSection } from "./InfoSection/InfoSection.tsx";
 import { Footer } from "./Footer.tsx";
 import {
     certificates,
