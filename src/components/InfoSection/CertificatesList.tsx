@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Box, Typography, List } from '@mui/material';
+import { Box, Typography, List, IconButton } from '@mui/material';
+import { ExternalLink } from 'lucide-react';
 import { Certificate } from '../../types';
 import { CertificateListItemDisplay } from '../CertificateListItemDisplay';
 import { HoverThumbnail } from '../HoverThumbnail';
@@ -8,9 +9,13 @@ const ANIMATE_TITLE_CLASS = 'animate-title';
 
 interface CertificatesListProps {
     certificates: Certificate[];
+    allCertificatesUrl?: string;
 }
 
-export const CertificatesList: React.FC<CertificatesListProps> = ({ certificates }) => {
+export const CertificatesList: React.FC<CertificatesListProps> = ({
+                                                                      certificates,
+                                                                      allCertificatesUrl
+                                                                  }) => {
     const [hoveredCertId, setHoveredCertId] = useState<string | null>(null);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
@@ -27,24 +32,55 @@ export const CertificatesList: React.FC<CertificatesListProps> = ({ certificates
         setHoveredCertId(null);
     };
 
+    const handleOpenLink = () => {
+        if (allCertificatesUrl) {
+            window.open(allCertificatesUrl, '_blank', 'noopener,noreferrer');
+        }
+    };
+
     return (
         <Box>
-            <Typography
-                className={ANIMATE_TITLE_CLASS}
-                variant="overline"
-                component="h2"
-                gutterBottom
-                sx={{
-                    color: '#AAAAAA',
-                    letterSpacing: '1px',
-                    textTransform: 'uppercase',
-                    fontSize: '15px',
-                    fontFamily: 'Poppins Regular, sans-serif',
-                    pb: 2,
-                }}
-            >
-                Certificates
-            </Typography>
+            <Box sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                pb: 2,
+            }}>
+                <Typography
+                    className={ANIMATE_TITLE_CLASS}
+                    variant="overline"
+                    component="h2"
+                    sx={{
+                        color: '#AAAAAA',
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase',
+                        fontSize: '15px',
+                        fontFamily: 'Poppins Regular, sans-serif',
+                        lineHeight: 1.5
+                    }}
+                >
+                    Certificates
+                </Typography>
+
+                {allCertificatesUrl && (
+                    <IconButton
+                        aria-label="Open all certificates in new tab"
+                        size="small"
+                        onClick={handleOpenLink}
+                        sx={{
+                            color: '#AAAAAA',
+                            ml: 1,
+                            mb: 1,
+                            transition: 'color 0.2s ease-in-out',
+                            '&:hover':{
+                                color: '#CB450C',
+                            }
+                        }}
+                    >
+                        <ExternalLink size={16} />
+                    </IconButton>
+                )}
+            </Box>
 
             <List
                 disablePadding

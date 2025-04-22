@@ -15,6 +15,42 @@ const CURSOR_OFFSET_X = 15;
 const CURSOR_OFFSET_Y = 15;
 const VIEWPORT_MARGIN = 10;
 
+function calculateClampedPosition(
+    cursorPos: { x: number, y: number },
+    viewportSize: { width: number, height: number },
+    thumbSize: { width: number, height: number },
+    offset: { x: number, y: number },
+    margin: number
+): { left: number, top: number } | null {
+    if (!viewportSize.width || !viewportSize.height) {
+        return null;
+    }
+
+    const { x: cursorX, y: cursorY } = cursorPos;
+    const { width: viewportWidth, height: viewportHeight } = viewportSize;
+    const { width: thumbWidth, height: thumbHeight } = thumbSize;
+    const { x: offsetX, y: offsetY } = offset;
+
+    let targetLeft = cursorX + offsetX;
+    let targetTop = cursorY + offsetY;
+
+    if (targetTop + thumbHeight + margin > viewportHeight) {
+        targetTop = cursorY - thumbHeight - offsetY;
+    }
+    if (targetTop < margin) {
+        targetTop = margin;
+    }
+    if (targetLeft + thumbWidth + margin > viewportWidth) {
+        targetLeft = viewportWidth - thumbWidth - margin;
+    }
+    if (targetLeft < margin) {
+        targetLeft = margin;
+    }
+
+    return { left: targetLeft, top: targetTop };
+}
+
+
 export const HoverThumbnail: React.FC<HoverThumbnailProps> = ({ imageUrl, position, isVisible }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
@@ -32,7 +68,6 @@ export const HoverThumbnail: React.FC<HoverThumbnailProps> = ({ imageUrl, positi
     useEffect(() => {
         setIsLoaded(false);
         setHasError(false);
-
         if (isVisible && imageUrl) {
             const img = new Image();
             img.src = imageUrl;
@@ -44,90 +79,72 @@ export const HoverThumbnail: React.FC<HoverThumbnailProps> = ({ imageUrl, positi
         }
     }, [imageUrl, isVisible]);
 
-    const calculatedStyle: SxProps<Theme> | null = useMemo(() => {
-        const shouldCalculate = isVisible && !!imageUrl && !hasError && isLoaded && !!viewportSize.width && !!viewportSize.height;
+    const clampedPosition = useMemo(() => {
+        return calculateClampedPosition(
+            position,
+            viewportSize,
+            { width: THUMBNAIL_WIDTH_PX, height: THUMBNAIL_HEIGHT_PX },
+            { x: CURSOR_OFFSET_X, y: CURSOR_OFFSET_Y },
+            VIEWPORT_MARGIN
+        );
+    }, [position, viewportSize]);
 
-        if (!shouldCalculate) {
-            return null;
-        }
+    const shouldRender = isVisible && !!imageUrl && !hasError && !!clampedPosition;
+    const showSkeleton = shouldRender && !isLoaded;
+    const showImage = shouldRender && isLoaded;
 
-        const { x: cursorX, y: cursorY } = position;
-        const { width: viewportWidth, height: viewportHeight } = viewportSize;
+    const baseBoxStyle: SxProps<Theme> = {
+        position: 'fixed',
+        width: `${THUMBNAIL_WIDTH_PX}px`,
+        height: `${THUMBNAIL_HEIGHT_PX}px`,
+        zIndex: 1500,
+        pointerEvents: 'none',
+        borderRadius: '4px',
+        overflow: 'hidden',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+        opacity: 0,
+        visibility: 'hidden',
+        transition: 'opacity 0.2s ease-out, left 0.1s ease-out, top 0.1s ease-out',
+    };
 
-        let targetLeft = cursorX + CURSOR_OFFSET_X;
-        let targetTop = cursorY + CURSOR_OFFSET_Y;
-
-        if (targetTop + THUMBNAIL_HEIGHT_PX + VIEWPORT_MARGIN > viewportHeight) {
-            targetTop = cursorY - THUMBNAIL_HEIGHT_PX - CURSOR_OFFSET_Y;
-        }
-        if (targetTop < VIEWPORT_MARGIN) {
-            targetTop = VIEWPORT_MARGIN;
-        }
-
-        if (targetLeft + THUMBNAIL_WIDTH_PX + VIEWPORT_MARGIN > viewportWidth) {
-            targetLeft = viewportWidth - THUMBNAIL_WIDTH_PX - VIEWPORT_MARGIN;
-        }
-        if (targetLeft < VIEWPORT_MARGIN) {
-            targetLeft = VIEWPORT_MARGIN;
-        }
-
-        return {
-            position: 'fixed',
-            left: `${targetLeft}px`,
-            top: `${targetTop}px`,
-            width: `${THUMBNAIL_WIDTH_PX}px`,
-            height: `${THUMBNAIL_HEIGHT_PX}px`,
-            zIndex: 1500,
-            pointerEvents: 'none',
-            borderRadius: '4px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            overflow: 'hidden',
-            transition: 'opacity 0.2s ease-out, left 0.1s ease-out, top 0.1s ease-out',
-            opacity: 1,
-            visibility: 'visible',
-        };
-
-    }, [position, isVisible, imageUrl, hasError, isLoaded, viewportSize]);
-
-    const showSkeleton = isVisible && !!imageUrl && !isLoaded && !hasError;
-
-    if (!calculatedStyle) {
-        if (showSkeleton) {
-            const skeletonStyle: SxProps<Theme> = {
-                position: 'fixed',
-                left: position.x + CURSOR_OFFSET_X,
-                top: position.y + CURSOR_OFFSET_Y,
-                width: `${THUMBNAIL_WIDTH_PX}px`,
-                height: `${THUMBNAIL_HEIGHT_PX}px`,
-                zIndex: 1499,
-                pointerEvents: 'none',
-                borderRadius: '4px',
-                overflow: 'hidden',
-                opacity: 1,
-                visibility: 'visible',
-                transition: 'opacity 0.3s ease-in-out',
-            };
-            return (
-                <Box sx={skeletonStyle}>
-                    <Skeleton variant="rectangular" width="100%" height="100%" sx={{backgroundColor: 'rgba(255, 255, 255, 0.1)'}} />
-                </Box>
-            );
-        }
+    if (!shouldRender) {
         return null;
     }
 
-    return (
-        <Box sx={calculatedStyle}>
-            <Box
-                sx={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: `url(${imageUrl})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}
-            />
-        </Box>
-    );
+    const dynamicStyle: SxProps<Theme> = {
+        ...baseBoxStyle,
+        left: `${clampedPosition.left}px`,
+        top: `${clampedPosition.top}px`,
+        opacity: 1,
+        visibility: 'visible',
+    };
+
+    if (showImage) {
+        return (
+            <Box sx={dynamicStyle}>
+                <Box
+                    sx={{
+                        width: '100%',
+                        height: '100%',
+                        backgroundImage: `url(${imageUrl})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                />
+            </Box>
+        );
+    } else if (showSkeleton) {
+        const skeletonContainerStyle: SxProps<Theme> = {
+            ...dynamicStyle,
+            zIndex: 1499,
+        };
+        return (
+            <Box sx={skeletonContainerStyle}>
+                <Skeleton variant="rectangular" width="100%" height="100%" sx={{backgroundColor: 'rgba(255, 255, 255, 0.1)'}} />
+            </Box>
+        );
+    } else {
+        return null;
+    }
 };
