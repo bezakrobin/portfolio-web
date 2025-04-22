@@ -34,6 +34,9 @@ export const CertificateListItemDisplay: React.FC<CertificateListItemDisplayProp
                     fontSize: '20px',
                     transition: 'color 0.2s ease-in-out',
                     width: '100%',
+                    '&:hover': {
+                        cursor: 'pointer',
+                    }
                 }}
             >
                 {certificate.name}
