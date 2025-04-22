@@ -23,7 +23,7 @@ export const CertificateListItemDisplay: React.FC<CertificateListItemDisplayProp
                 px: 0,
                 borderTop: '1px solid #AAAAAA',
                 position: 'relative',
-                cursor: 'default',
+                cursor: 'pointer',
             }}
             onMouseEnter={onMouseEnter}
         >

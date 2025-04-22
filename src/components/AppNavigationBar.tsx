@@ -1,36 +1,45 @@
-import React, { useEffect, useRef } from "react";
-import { AppBar, Toolbar, Box } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
+import { AppBar, Box, Toolbar } from "@mui/material";
 import { DoubleLineText } from "./DoubleLineText.tsx";
 import { NavButton } from "./NavButton.tsx";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Status } from "./Status.tsx";
+import { DarkModeSwitch } from "./DarkModeSwitch.tsx";
 
 gsap.registerPlugin(ScrollToPlugin);
 
 export const AppNavigationBar: React.FC = () => {
     const navRef = useRef<HTMLDivElement | null>(null);
 
+    const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('dark');
+
+    const handleThemeToggle = () => {
+        setCurrentTheme(prevTheme => {
+            return prevTheme === 'light' ? 'dark' : 'light';
+        });
+    };
+
     useEffect(() => {
         if (navRef.current) {
             gsap.fromTo(
                 navRef.current,
-                { opacity: 0, y: -100 },
-                { opacity: 1, y: 0, duration: 0.3, ease: "power2.out"}
+                { opacity: 0, y: -50 },
+                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.2}
             );
         }
     }, []);
 
     const handleContactClick = () => {
         gsap.to(window, {
-            duration: 4,
-            scrollTo: "#contact-section",
+            duration: 1.5,
+            scrollTo: { y: "#contact-section", offsetY: 50 },
             ease: "power2.inOut",
         });
     };
 
     return (
-        <Box ref={navRef} sx={{ position: "absolute", width: "100%", zIndex: 1000, top: 0, transform: "translateY(-100px)" }}>
+        <Box ref={navRef} sx={{ position: "absolute", width: "100%", zIndex: 1000, top: 0, opacity: 0 }}>
             <AppBar
                 position="fixed"
                 sx={{
@@ -39,14 +48,30 @@ export const AppNavigationBar: React.FC = () => {
                     userSelect: "none",
                 }}
             >
-                <Toolbar sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", pt: "20px", ml: "30px", mr: "30px" }}>
+                <Toolbar sx={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                    alignItems: 'center',
+                    pt: "20px",
+                    ml: "30px",
+                    mr: "30px"
+                }}>
                     <DoubleLineText line1="robin" line2="bezak" color="#AAAAAA" />
                     <DoubleLineText line1="almost full stack dev" line2="folio / 2024 - 2025" color="#777777" />
                     <Box sx={{ justifySelf: "center" }}>
                         <Status />
                     </Box>
-                    <Box sx={{ justifySelf: "end" }}>
+                    <Box sx={{
+                        justifySelf: "end",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 2,
+                    }}>
                         <NavButton label="contact" onClick={handleContactClick} />
+                        <DarkModeSwitch
+                            currentTheme={currentTheme}
+                            onToggle={handleThemeToggle}
+                        />
                     </Box>
                 </Toolbar>
             </AppBar>

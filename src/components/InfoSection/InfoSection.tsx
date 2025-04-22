@@ -146,7 +146,7 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
                             mb: { xs: columnGap, md: 0 },
                         }}
                     >
-                        <CertificatesList certificates={certificates} />
+                        <CertificatesList certificates={certificates} allCertificatesUrl={"https://github.com/bezakrobin/certificates-collection"} />
                     </Box>
 
                     <Box
