@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { CertificatesList, InterestsSection, IcebreakersSection, LanguagesSection, InfoFooter } from '@components/index';
 import { Certificate } from '../types';
-import { languages } from '@data/data';
+import { useData } from '../contexts/DataContext';
 
 interface InfoSectionProps {
     certificates: Certificate[];
@@ -19,6 +19,7 @@ const ANIMATE_CAROUSEL_CLASS = 'animate-carousel';
 export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
     const columnGap = 15;
     const sectionRef = useRef<HTMLDivElement | null>(null);
+    const { languages } = useData();
 
     useEffect(() => {
         const sectionElement = sectionRef.current;

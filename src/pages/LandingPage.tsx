@@ -2,14 +2,10 @@ import React from "react";
 import { Box } from "@mui/material";
 import { NavigationBar, Header, Projects, CommunityContributions, InfoSection, Footer } from "@components/index";
 import { DividerDirectionProvider } from "@contexts/DividerDirectionContext";
-import {
-    certificates,
-    featuredProjects,
-    otherProjects,
-    socials
-} from "@data/data";
+import { useData } from '../contexts/DataContext';
 
 export const LandingPage: React.FC = () => {
+    const { featuredProjects, otherProjects, certificates, socials } = useData();
     return (
         <DividerDirectionProvider>
             <Box>

@@ -1,11 +1,11 @@
 import React from 'react';
-import { isAvailableForHire } from '@/data/data';
+import { useData } from '../contexts/DataContext';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-
 export const Status: React.FC = () => {
+    const { isAvailableForHire } = useData();
 
     const statusText = isAvailableForHire ? 'Available for hire' : 'Currently not available for hire';
 
