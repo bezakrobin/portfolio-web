@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { AppBar, Box, Toolbar, useTheme } from "@mui/material";
+import { AppBar, Box, Toolbar } from "@mui/material";
 import { DoubleLineText, Logo, Button, Status, DarkModeSwitch } from "@components/index";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -8,7 +8,6 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export const NavigationBar: React.FC = () => {
     const navRef = useRef<HTMLDivElement | null>(null);
-    const theme = useTheme();
 
     useEffect(() => {
         if (navRef.current) {
@@ -36,7 +35,7 @@ export const NavigationBar: React.FC = () => {
                 sx={{
                     boxShadow: "none",
                     userSelect: "none",
-                    backgroundColor: theme.palette.background.default 
+                    backgroundColor: 'transparent'
                 }}
             >
                 <Toolbar 
