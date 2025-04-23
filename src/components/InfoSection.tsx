@@ -1,13 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, useTheme } from '@mui/material';
 import gsap from "gsap";
-import { CertificatesList } from './CertificatesList';
-import { InterestsSection } from './InterestsSection';
-import { IcebreakersSection } from './IcebreakersSection';
-import { LanguagesSection } from './LanguagesSection';
-import { InfoFooter } from './InfoFooter';
-import { Certificate } from '../../types';
-import { languages } from '../../data/data';
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { CertificatesList, InterestsSection, IcebreakersSection, LanguagesSection, InfoFooter } from '@components/index';
+import { Certificate } from '../types';
+import { useData } from '../contexts/DataContext';
 
 interface InfoSectionProps {
     certificates: Certificate[];
@@ -22,6 +19,8 @@ const ANIMATE_CAROUSEL_CLASS = 'animate-carousel';
 export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
     const columnGap = 15;
     const sectionRef = useRef<HTMLDivElement | null>(null);
+    const { languages } = useData();
+    const theme = useTheme();
 
     useEffect(() => {
         const sectionElement = sectionRef.current;
@@ -120,7 +119,7 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
             ref={sectionRef}
             component="section"
             sx={{
-                color: '#AAAAAA',
+                color: theme.palette.text.secondary,
                 pb: 12,
                 px: 3,
                 pt: { xs: 10, md: 20 },
@@ -168,4 +167,4 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
             </Container>
         </Box>
     );
-};
+}

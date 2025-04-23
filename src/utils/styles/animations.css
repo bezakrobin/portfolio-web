@@ -1,0 +1,19 @@
+@keyframes scaleXAnimation {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.divider-base {
+    transform: scaleX(0);
+}
+
+.divider-animate {
+    animation-name: scaleXAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+} 

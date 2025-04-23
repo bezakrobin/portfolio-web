@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Preloader } from "./components/Preloader.tsx";
-import { LandingPage } from "./components/LandingPage.tsx";
+import { Preloader } from "@components/index";
+import { LandingPage } from "@pages/LandingPage";
 import './App.css';
 
 export default function App()  {

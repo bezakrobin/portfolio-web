@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 interface TextLogoProps {
     line1: string;
     line2: string;
-    color: string;
+    color?: string;
     lineHeight?: number,
     isHovered?: boolean;
 }
@@ -16,6 +16,8 @@ export const DoubleLineText: React.FC<TextLogoProps> = ({
     lineHeight = 1.5,
     isHovered = false,
 }) => {
+    const theme = useTheme();
+
     return (
         <Box
             textAlign="left"
@@ -23,7 +25,7 @@ export const DoubleLineText: React.FC<TextLogoProps> = ({
             fontSize="12px"
             sx={{
                 transition: 'color 0.3s ease',
-                color: isHovered ? '#AAAAAA' : color,
+                color: isHovered ? theme.palette.text.primary : color ? color : theme.palette.text.secondary,
             }}
         >
             <Typography

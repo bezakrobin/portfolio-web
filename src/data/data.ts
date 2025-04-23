@@ -1,6 +1,6 @@
-import {Language} from "../types.ts";
+import { Language, SocialLink, Certificate, Project } from '../types/index';
 
-export const featuredProjects = [
+export const featuredProjects: Project[] = [
     {
         id: 1,
         projectTitle: "Project One",
@@ -33,7 +33,7 @@ export const featuredProjects = [
     },
 ];
 
-export const otherProjects = [
+export const otherProjects: Project[] = [
     {
         id: 1,
         projectTitle: "Project One",
@@ -66,43 +66,43 @@ export const otherProjects = [
     },
 ];
 
-export const certificates = [
-    { id: 'cert-0', name: 'SOLOLEARN: Tech for Everyone', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Tech%20for%20Everyone/97c3e644-b2ee-4493-94b3-612432261507.jpg" },
-    { id: 'cert-1', name: 'SOLOLEARN: Introduction to SQL', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20SQL/accc7f53-241c-4885-bb4f-2ea8140c265c.jpg" },
-    { id: 'cert-2', name: 'SOLOLEARN: Introduction to HTML', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20HTML/24c81eb6-2d25-4aa7-96d1-f763a963ab72.jpg" },
-    { id: 'cert-3', name: 'SOLOLEARN: Introduction to Python', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20Python/a5fea691-e8df-4569-bfd3-7424fd4f956e.jpg" },
-    { id: 'cert-4', name: 'SOLOLEARN: Introduction to JavaScript', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20JavaScript/e4b5f856-7927-4f5e-a2c7-87fd3ada5cd6.jpg" },
-    { id: 'cert-5', name: 'SOLOLEARN: Introduction to Java', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20Java/373c10e5-e4f3-4114-927f-de51a5620609.jpg" },
-    { id: 'cert-6', name: 'SOLOLEARN: Introduction to CSS', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20CSS/549828bb-dd4d-499b-9d2a-f4f9e57b4b09.jpg" },
-    { id: 'cert-7', name: 'SOLOLEARN: Introduction to C++', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20C%2B%2B/e6465db0-4ae8-4102-8eb9-142a2ff0fb07.jpg" },
-    { id: 'cert-8', name: 'SOLOLEARN: Introduction to C#', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20C%23/7d8cdb6a-5c3d-4e6b-b4a2-e644eabf16f6.jpg" },
-    { id: 'cert-9', name: 'SOLOLEARN: Introduction to C', image_url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20C/da8a766a-dabb-4584-9e70-13666aaa5093.jpg" }
+export const certificates: Certificate[] = [
+    { id: 'cert-0', title: 'SOLOLEARN: Tech for Everyone', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Tech%20for%20Everyone/97c3e644-b2ee-4493-94b3-612432261507.jpg" },
+    { id: 'cert-1', title: 'SOLOLEARN: Introduction to SQL', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20SQL/accc7f53-241c-4885-bb4f-2ea8140c265c.jpg" },
+    { id: 'cert-2', title: 'SOLOLEARN: Introduction to HTML', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20HTML/24c81eb6-2d25-4aa7-96d1-f763a963ab72.jpg" },
+    { id: 'cert-3', title: 'SOLOLEARN: Introduction to Python', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20Python/a5fea691-e8df-4569-bfd3-7424fd4f956e.jpg" },
+    { id: 'cert-4', title: 'SOLOLEARN: Introduction to JavaScript', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20JavaScript/e4b5f856-7927-4f5e-a2c7-87fd3ada5cd6.jpg" },
+    { id: 'cert-5', title: 'SOLOLEARN: Introduction to Java', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20Java/373c10e5-e4f3-4114-927f-de51a5620609.jpg" },
+    { id: 'cert-6', title: 'SOLOLEARN: Introduction to CSS', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20CSS/549828bb-dd4d-499b-9d2a-f4f9e57b4b09.jpg" },
+    { id: 'cert-7', title: 'SOLOLEARN: Introduction to C++', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20C%2B%2B/e6465db0-4ae8-4102-8eb9-142a2ff0fb07.jpg" },
+    { id: 'cert-8', title: 'SOLOLEARN: Introduction to C#', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20C%23/7d8cdb6a-5c3d-4e6b-b4a2-e644eabf16f6.jpg" },
+    { id: 'cert-9', title: 'SOLOLEARN: Introduction to C', url: "https://raw.githubusercontent.com/bezakrobin/certificates-collection/refs/heads/main/Sololearn/Introduction%20to%20C/da8a766a-dabb-4584-9e70-13666aaa5093.jpg" }
 ];
 
-export const socials = [
+export const socials: SocialLink[] = [
     {
-        id: 'soc-1',
+        id: '1',
         name: 'Instagram',
-        url: 'https://www.instagram.com/robin.bezak/'
+        url: 'https://instagram.com/bezakrobin'
     },
     {
-        id: 'soc-2',
+        id: '2',
         name: 'Threads',
-        url: 'https://www.threads.net/@robin.bezak'
+        url: 'https://threads.net/@bezakrobin'
     },
     {
-        id: 'soc-3',
+        id: '3',
         name: 'TikTok',
-        url: 'https://www.tiktok.com/@robin.bezak'
+        url: 'https://tiktok.com/@bezakrobin'
     },
     {
-        id: 'soc-4',
+        id: '4',
         name: 'GitHub',
         url: 'https://github.com/bezakrobin'
     }
 ];
 
-export const isAvailableForHire: boolean = false;
+export const isAvailableForHire = true;
 
 export const languages: Language[] = [
     { id: "lang-0", name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },

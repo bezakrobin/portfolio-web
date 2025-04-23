@@ -1,14 +1,16 @@
-import React from "react";
-import { Button, Box } from "@mui/material";
+import React from 'react';
+import { Button as MuiButton, Box, useTheme } from "@mui/material";
 
-interface NavButtonProps {
+interface ButtonProps {
     label: string;
     onClick?: () => void;
 }
 
-export const NavButton: React.FC<NavButtonProps> = ({ label, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
+    const theme = useTheme();
+
     return (
-        <Button
+        <MuiButton
             onClick={onClick}
             disableRipple
             sx={{
@@ -16,7 +18,7 @@ export const NavButton: React.FC<NavButtonProps> = ({ label, onClick }) => {
                 fontSize: "16px",
                 textTransform: "uppercase",
                 padding: "1px 10px",
-                border: "2px solid #777777",
+                border: `2px solid ${theme.palette.text.secondary}`,
                 borderRadius: "16px",
                 overflow: "hidden",
                 transition: "border 0.1s ease-in-out",
@@ -28,12 +30,12 @@ export const NavButton: React.FC<NavButtonProps> = ({ label, onClick }) => {
                     bottom: 0,
                     width: "100%",
                     height: "0%",
-                    backgroundColor: "#CB450C",
+                    backgroundColor: theme.palette.accent.hover,
                     transition: "height 0.1s ease-in-out",
                     zIndex: -1,
                 },
                 "&:hover": {
-                    border: "2px solid #CB450C",
+                    border: `2px solid ${theme.palette.accent.hover}`,
                     "&::after": {
                         height: "100%",
                     },
@@ -62,10 +64,10 @@ export const NavButton: React.FC<NavButtonProps> = ({ label, onClick }) => {
                         transition: "transform 0.1s ease-in-out",
                     }}
                 >
-                    <Box sx={{ color: "#777777" }}>{label}</Box>
-                    <Box sx={{ color: "#111111" }}>{label}</Box>
+                    <Box sx={{ color: theme.palette.text.secondary }}>{label}</Box>
+                    <Box sx={{ color: theme.palette.background.default }}>{label}</Box>
                 </Box>
             </Box>
-        </Button>
+        </MuiButton>
     );
-};
+}; 

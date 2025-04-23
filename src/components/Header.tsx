@@ -1,9 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { Box } from "@mui/material";
-import { HeaderText } from "./HeaderText.tsx";
-import { Dash } from "./Dash.tsx";
-import { AboutText } from "./AboutText.tsx";
-import { ScrollDownButton } from "./ScrollDownButton.tsx";
+import { useEffect, useRef } from "react";
+import { Box, useTheme } from "@mui/material";
+import { SectionHeader, HorizontalLine, ScrollDownButton, AboutSection } from "@components/index";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -16,6 +13,7 @@ export const Header: React.FC = () => {
     const fullRef = useRef<HTMLDivElement | null>(null);
     const stackRef = useRef<HTMLDivElement | null>(null);
     const dashRef = useRef<HTMLDivElement | null>(null);
+    const theme = useTheme();
 
     useEffect(() => {
         if (titleStRowRef.current) {
@@ -85,6 +83,7 @@ export const Header: React.FC = () => {
                 marginTop: "100px",
                 display: "flex",
                 flexDirection: "column",
+                backgroundColor: theme.palette.background.default,
             }}
         >
             <Box sx={{ mx: "40px" }}>
@@ -99,7 +98,7 @@ export const Header: React.FC = () => {
                     }}
                 >
                     <Box ref={fullRef}>
-                        <HeaderText text="full" fontSize="400px" />
+                        <SectionHeader text="full" fontSize="400px" />
                     </Box>
                     <Box
                         ref={dashRef}
@@ -112,10 +111,10 @@ export const Header: React.FC = () => {
                             transform: "translateX(-50%)",
                         }}
                     >
-                        <Dash width={"1000%"}/>
+                        <HorizontalLine width={"1000%"}/>
                     </Box>
                     <Box ref={stackRef}>
-                        <HeaderText text="stack" fontSize="400px" />
+                        <SectionHeader text="stack" fontSize="400px" />
                     </Box>
                 </Box>
             </Box>
@@ -130,7 +129,7 @@ export const Header: React.FC = () => {
                     }}
                 >
                     <Box ref={titleNdRowRef} sx={{ opacity: 0 }}>
-                        <HeaderText text="developer" fontSize="400px" />
+                        <SectionHeader text="developer" fontSize="400px" />
                     </Box>
                     <Box
                         ref={aboutTextRef}
@@ -142,11 +141,11 @@ export const Header: React.FC = () => {
                             opacity: 0
                         }}
                     >
-                        <AboutText text={"About I am a full-stack developer based in Prague, Czechia, passionate about building modern web experiences. I specialize in creating scalable applications using React, TypeScript, JavaScript and Python. I have worked with companies like ČEZ and Mibcon, and I am always seeking new challenges to drive digital innovation."} />
+                        <AboutSection text={"About I am a full-stack developer based in Prague, Czechia, passionate about building modern web experiences. I specialize in creating scalable applications using React, TypeScript, JavaScript and Python. I have worked with companies like ČEZ and Mibcon, and I am always seeking new challenges to drive digital innovation."} />
                         <ScrollDownButton />
                     </Box>
                 </Box>
             </Box>
         </Box>
     );
-};
+}

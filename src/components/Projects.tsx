@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Divider } from "./Divider.tsx";
+import { Divider } from "@components/index";
 import { Box } from "@mui/material";
-import { DoubleLineText } from "./DoubleLineText.tsx";
-import { ParallaxText } from "./ParallaxText.tsx";
+import { DoubleLineText, ParallaxText } from "@components/index";
 
 interface ProjectCategory {
     line1: string;
@@ -39,7 +38,7 @@ export const Projects: React.FC<FeaturedProjectsProps> = ({ projects, sectionTit
                         <Box />
                         {index === 0 ? (
                             <Box sx={{ pt: "30px" }}>
-                                <DoubleLineText line1={sectionTitle.split(' ')[0]} line2={sectionTitle.split(' ')[1] + " (" + projects.length.toString() + ")"} color="#777777" lineHeight={1} />
+                                <DoubleLineText line1={sectionTitle.split(' ')[0]} line2={sectionTitle.split(' ')[1] + " (" + projects.length.toString() + ")"} lineHeight={1} />
                             </Box>
                         ) : (
                             <Box />
@@ -49,7 +48,6 @@ export const Projects: React.FC<FeaturedProjectsProps> = ({ projects, sectionTit
                             <DoubleLineText
                                 line1={project.projectCategory.line1}
                                 line2={project.projectCategory.line2}
-                                color="#777777"
                                 lineHeight={1}
                                 isHovered={hoveredProjectId === project.id}
                             />

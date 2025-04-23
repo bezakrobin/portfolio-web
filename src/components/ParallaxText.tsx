@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { Box } from "@mui/material";
+import React from "react";
+import { Box, useTheme } from "@mui/material";
 import gsap from "gsap";
+import { useParallax } from '../utils/hooks/useParallax';
 
 interface ParallaxTextProps {
     text: string;
@@ -10,39 +11,8 @@ interface ParallaxTextProps {
 }
 
 export const ParallaxText: React.FC<ParallaxTextProps> = ({ text, speed = 1, direction = "left", fontSize }) => {
-    const textRef = useRef<HTMLDivElement | null>(null);
-    const offsetX = useRef(0);
-
-    useEffect(() => {
-        if (!textRef.current) return;
-
-        let lastScrollY = window.scrollY;
-        let requestId: number;
-
-        const smoothMove = () => {
-            gsap.to(textRef.current, {
-                x: offsetX.current,
-                duration: 0.3,
-                ease: "power2.out",
-            });
-            requestId = requestAnimationFrame(smoothMove);
-        };
-
-        const updateVelocity = () => {
-            const deltaY = window.scrollY - lastScrollY;
-            lastScrollY = window.scrollY;
-
-            offsetX.current += (direction === "left" ? -1 : 1) * deltaY * speed * 0.8;
-        };
-
-        window.addEventListener("scroll", updateVelocity);
-        requestId = requestAnimationFrame(smoothMove);
-
-        return () => {
-            window.removeEventListener("scroll", updateVelocity);
-            cancelAnimationFrame(requestId);
-        };
-    }, [speed, direction]);
+    const theme = useTheme();
+    const textRef = useParallax({ speed, direction });
 
     const handleMouseEnter = () => {
         gsap.to(textRef.current, { backgroundPosition: "0% 100%", duration: 0.3, ease: "power2.out" });
@@ -70,10 +40,10 @@ export const ParallaxText: React.FC<ParallaxTextProps> = ({ text, speed = 1, dir
                     fontSize: fontSize,
                     lineHeight: fontSize,
                     cursor: "pointer",
-                    color: "#777777",
+                    color: theme.palette.text.secondary,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    backgroundImage: "linear-gradient(to top, #CB450C 0%, #CB450C 50%, #777777 51%, #777777 100%)",
+                    backgroundImage: `linear-gradient(to top, ${theme.palette.accent.hover} 0%, ${theme.palette.accent.hover} 50%, ${theme.palette.text.secondary} 51%, ${theme.palette.text.secondary} 100%)`,
                     backgroundSize: "100% 200%",
                     backgroundPosition: "0% 0%",
                 }}

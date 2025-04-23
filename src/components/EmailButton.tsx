@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Typography, Box } from '@mui/material';
-import { Tooltip } from "./Tooltip.tsx";
+import { Typography, Box, useTheme } from '@mui/material';
+import { Tooltip } from "@components/index";
 
-interface EmailProps {
+interface EmailButtonProps {
     email: string;
 }
 
-export const Email: React.FC<EmailProps> = ({ email }) => {
+export const EmailButton: React.FC<EmailButtonProps> = ({ email }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [label, setLabel] = useState("click to copy");
-
+    const theme = useTheme();
 
     const handleCopyEmail = () => {
         navigator.clipboard.writeText(email).then(() => {
@@ -37,13 +37,13 @@ export const Email: React.FC<EmailProps> = ({ email }) => {
                 component="span"
                 sx={{
                     cursor: 'pointer',
-                    color: '#AAAAAA',
+                    color: theme.palette.text.primary,
                     transition: 'color 0.3s ease',
                     fontFamily: "'Poppins SemiBold', sans-serif",
                     fontSize: '30px',
                     pt: 1,
                     '&:hover': {
-                        color: '#CB450C',
+                        color: theme.palette.accent.hover,
                     },
                     mb: 2
                 }}

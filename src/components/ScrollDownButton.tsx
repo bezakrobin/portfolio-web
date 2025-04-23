@@ -1,22 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import gsap from "gsap";
 import arrowIcon from "/src/assets/icons/arrow-down.svg";
 
 export const ScrollDownButton: React.FC = () => {
     const iconRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
-
+    const theme = useTheme();
+    
     const baseStyle: React.CSSProperties = {
         width: "30px",
         height: "30px",
-        fill: "#777777",
+        fill: theme.palette.text.secondary,
         transition: "fill 0.3s ease-in-out",
         cursor: 'pointer',
     };
 
     const hoverStyle: React.CSSProperties = {
-        fill: "#AAAAAA !important",
+        fill: theme.palette.text.primary,
     };
 
     const combinedStyle = {
@@ -60,12 +61,12 @@ export const ScrollDownButton: React.FC = () => {
             <Typography
                 sx={{
                     fontSize: "18px",
-                    color: "#777777",
+                    color: theme.palette.text.secondary,
                     fontFamily: "'Poppins Regular', sans-serif",
                     cursor: "pointer",
                     transition: "color 0.3s ease-in-out",
                     '&:hover': {
-                        color: "#AAAAAA",
+                        color: theme.palette.text.primary,
                     }
                 }}
             >

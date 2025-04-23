@@ -1,8 +1,10 @@
 import React from "react";
-import { Box, Typography, Link } from "@mui/material";
-import { CenteredContainer } from "./CenteredContainer.tsx";
+import { Box, Typography, Link, useTheme } from "@mui/material";
+import { CenteredContainer } from "@components/index";
 
 export const CommunityContributions: React.FC = () => {
+    const theme = useTheme();
+
     return (
         <Box>
             <CenteredContainer>
@@ -12,7 +14,7 @@ export const CommunityContributions: React.FC = () => {
                         textTransform: "uppercase",
                         fontFamily: "Poppins Regular, sans-serif",
                         lineHeight: "60px",
-                        color: "#777777",
+                        color: theme.palette.text.secondary,
                     }}
                 >
                     community contributions
@@ -24,7 +26,7 @@ export const CommunityContributions: React.FC = () => {
                         lineHeight: "40px",
                         width: "800px",
                         textAlign: "center",
-                        color: "#AAAAAA",
+                        color: theme.palette.text.primary,
                     }}
                 >
                     I have created various resources and tools for designers and developers like myself. Check out{" "}
@@ -34,12 +36,12 @@ export const CommunityContributions: React.FC = () => {
                         rel="noopener noreferrer"
                         sx={{
                             fontFamily: "Poppins SemiBold, sans-serif",
-                            color: "#777777",
+                            color: theme.palette.text.secondary,
                             textTransform: "uppercase",
                             textDecoration: "none",
                             transition: "color 0.3s ease",
                             "&:hover": {
-                                color: "#CB450C",
+                                color: theme.palette.accent.hover,
                             },
                         }}
                     >

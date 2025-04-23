@@ -1,22 +1,14 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { AppNavigationBar } from "./AppNavigationBar.tsx";
-import { Header } from "./Header.tsx";
-import { Projects } from "./Projects.tsx";
-import { CommunityContributions } from "./CommunityContributions.tsx";
-import { InfoSection } from "./InfoSection/InfoSection.tsx";
-import { Footer } from "./Footer.tsx";
-import {
-    certificates,
-    featuredProjects,
-    otherProjects,
-    socials
-} from "../data/data.ts";
+import { NavigationBar, Header, Projects, CommunityContributions, InfoSection, Footer } from "@components/index";
+import { useData } from '../contexts/DataContext';
 
 export const LandingPage: React.FC = () => {
+    const { featuredProjects, otherProjects, certificates, socials } = useData();
+
     return (
         <Box>
-            <AppNavigationBar />
+            <NavigationBar />
             <Header />
             <Projects id={'projects-section'} projects={featuredProjects} sectionTitle="Featured Projects" />
             <CommunityContributions />
@@ -25,4 +17,4 @@ export const LandingPage: React.FC = () => {
             <Footer socials={socials} />
         </Box>
     );
-};
+}; 

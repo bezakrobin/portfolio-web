@@ -2,6 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Marquee from "react-fast-marquee";
 import { Language } from '../types';
+import { useTheme } from '@mui/material';
 
 interface InfiniteIconCarouselProps {
     speed?: number;
@@ -9,13 +10,15 @@ interface InfiniteIconCarouselProps {
 }
 
 export const InfiniteIconCarousel: React.FC<InfiniteIconCarouselProps> = ({ speed = 20, languages }) => {
+    const theme = useTheme();
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ width: '100%' }}>
                 <Marquee
                     speed={speed}
                     gradient={true}
-                    gradientColor="#111111"
+                    gradientColor={theme.palette.background.default}
                     gradientWidth={50}
                     pauseOnHover={true}
                     style={{

@@ -1,10 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import { Box, Link, Typography } from "@mui/material";
+import { useEffect, useState } from 'react';
+import { Box, Link, Typography, useTheme } from "@mui/material";
 import Marquee from "react-fast-marquee";
-import { Divider } from "./Divider.tsx";
-import { ParallaxText } from "./ParallaxText.tsx";
-import { Email } from "./Email.tsx";
-import { NavButton } from "./NavButton.tsx";
+import { Divider, EmailButton, Button, ParallaxText } from "@components/index";
 
 interface SocialLink {
     id: string;
@@ -20,6 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
     const [hours, setHours] = useState<string>('');
     const [minutes, setMinutes] = useState<string>('');
     const [showColon, setShowColon] = useState<boolean>(true);
+    const theme = useTheme();
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -48,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                 userSelect: 'none',
             }}
         >
-            <Divider width="100%" thickness={2} marginY={2} />
+            <Divider width="100%" thickness={2} marginY={2} direction="left" />
             <Box
                 sx={{
                     pt: 8,
@@ -58,12 +56,12 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                 }}
             >
                 <Marquee speed={100} gradient={false} pauseOnHover={true}>
-                    <ParallaxText text={'LET’S TALK — LET’S COLLABORATE — SAY HELLO — WANNA BE STARTING SOMETHING? — '} fontSize={'260px'} speed={0} />
+                    <ParallaxText text="LET'S TALK — LET'S COLLABORATE — SAY HELLO — WANNA BE STARTING SOMETHING? — " fontSize="260px" speed={0} direction="left" />
                 </Marquee>
             </Box>
-            <Divider width="100%" thickness={2} marginY={2} />
+            <Divider width="100%" thickness={2} marginY={2} direction="right" />
 
-            <Email email="robin.bezak.99@gmail.com" />
+            <EmailButton email="robin.bezak.99@email.com" />
 
             <Box
                 sx={{
@@ -119,7 +117,7 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                     mt: -1,
                 }}>
                     {socials.map(social => (
-                        <NavButton key={social.id} label={social.name} onClick={ () => window.open(social.url, '_blank', 'noopener,noreferrer') } />
+                        <Button key={social.id} label={social.name} onClick={ () => window.open(social.url, '_blank', 'noopener,noreferrer') } />
                     ))}
                 </Box>
 
@@ -138,10 +136,10 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                         <span style={{ fontWeight: 800 }}>Coded by</span>
                         <Link href="https://github.com/bezakrobin" target="_blank" rel="noopener noreferrer" color="inherit" underline="none"
                               sx={{
-                                  color: '#777777',
+                                  color: theme.palette.text.secondary,
                                   transition: 'color 0.3s ease',
                                   '&:hover': {
-                                      color: '#CB450C'
+                                      color: theme.palette.accent.hover
                                   }
                               }}
                         >
@@ -153,4 +151,4 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
 
         </Box>
     );
-};
+}
