@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Box, Typography, List, IconButton } from '@mui/material';
+import { Box, Typography, List, IconButton, useTheme } from '@mui/material';
 import { ExternalLink } from 'lucide-react';
 import { Certificate } from '../types';
 import { CertificateItem, HoverThumbnail } from '@components/index';
@@ -14,6 +14,8 @@ interface CertificatesListProps {
 export const CertificatesList: React.FC<CertificatesListProps> = ({ certificates, allCertificatesUrl }) => {
     const [hoveredCertId, setHoveredCertId] = useState<string | null>(null);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+    const theme = useTheme();
+
 
     const hoveredCertificate = useMemo(() => {
         if (!hoveredCertId) return null;
@@ -47,7 +49,7 @@ export const CertificatesList: React.FC<CertificatesListProps> = ({ certificates
                     variant="overline"
                     component="h2"
                     sx={{
-                        color: '#AAAAAA',
+                        color: theme.palette.text.primary,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
                         fontSize: '15px',
@@ -64,12 +66,12 @@ export const CertificatesList: React.FC<CertificatesListProps> = ({ certificates
                         size="small"
                         onClick={handleOpenLink}
                         sx={{
-                            color: '#AAAAAA',
+                            color: theme.palette.text.primary,
                             ml: 1,
                             mb: 1,
                             transition: 'color 0.2s ease-in-out',
                             '&:hover':{
-                                color: '#CB450C',
+                                color: theme.palette.accent.hover,
                             }
                         }}
                     >

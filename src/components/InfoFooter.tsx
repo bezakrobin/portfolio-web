@@ -1,9 +1,11 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 
 const ANIMATE_FOOTER_CLASS = 'animate-footer';
 
 export const InfoFooter: React.FC = () => {
+    const theme = useTheme();
+
     return (
         <Box
             id="footer-box"
@@ -16,7 +18,7 @@ export const InfoFooter: React.FC = () => {
         >
             <Typography
                 className={ANIMATE_FOOTER_CLASS}
-                variant="body1" sx={{ color: '#AAAAAA', lineHeight: 1.6, fontSize: '20px' }}>
+                variant="body1" sx={{ color: theme.palette.text.primary, lineHeight: 1.6, fontSize: '20px' }}>
                 Got a question, proposal or project or want to work together on something? Feel free to reach out.
             </Typography>
         </Box>

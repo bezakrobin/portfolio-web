@@ -1,11 +1,13 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 
 interface AboutSectionProps {
     text: string;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ text }) => {
+    const theme = useTheme();
+
     const words = text.split(" ");
     const firstWord = words.shift();
     const remainingText = words.join(" ");
@@ -17,10 +19,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ text }) => {
                 userSelect: "none",
             }}
         >
-            <span style={{ fontFamily: "'Round 8', sans-serif", color: "#777777", paddingRight: "10px", fontSize: "25px", lineHeight: "30px" }}>
+            <span style={{ fontFamily: "'Round 8', sans-serif", color: theme.palette.text.secondary, paddingRight: "10px", fontSize: "25px", lineHeight: "30px" }}>
                 {firstWord}
             </span>{" "}
-            <span style={{ fontFamily: "'Poppins SemiBold', sans-serif", color: "#AAAAAA", fontSize: "18px", lineHeight: "30px" }}>
+            <span style={{ fontFamily: "'Poppins SemiBold', sans-serif", color: theme.palette.text.primary, fontSize: "18px", lineHeight: "30px" }}>
                 {remainingText}
             </span>
         </Typography>

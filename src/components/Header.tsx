@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { SectionHeader, HorizontalLine, ScrollDownButton, AboutSection } from "@components/index";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,6 +13,7 @@ export const Header: React.FC = () => {
     const fullRef = useRef<HTMLDivElement | null>(null);
     const stackRef = useRef<HTMLDivElement | null>(null);
     const dashRef = useRef<HTMLDivElement | null>(null);
+    const theme = useTheme();
 
     useEffect(() => {
         if (titleStRowRef.current) {
@@ -82,6 +83,7 @@ export const Header: React.FC = () => {
                 marginTop: "100px",
                 display: "flex",
                 flexDirection: "column",
+                backgroundColor: theme.palette.background.default,
             }}
         >
             <Box sx={{ mx: "40px" }}>

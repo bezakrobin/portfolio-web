@@ -102,7 +102,7 @@ export const socials: SocialLink[] = [
     }
 ];
 
-export const isAvailableForHire = false;
+export const isAvailableForHire = true;
 
 export const languages: Language[] = [
     { id: "lang-0", name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },

@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 
 interface SectionHeaderProps {
     text: string;
@@ -7,10 +7,12 @@ interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ text, fontSize }) => {
+    const theme = useTheme();
+
     return (
         <Typography
             sx={{
-                color: "#777777",
+                color: theme.palette.text.secondary,
                 fontSize: fontSize,
                 lineHeight: fontSize,
                 fontFamily: "'Round 8', sans-serif",
@@ -26,8 +28,8 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({ text, fontSize }) 
                         display: "inline-block",
                         transition: "color 0.1s ease-in-out",
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#AAAAAA")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#777777")}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = theme.palette.text.primary)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = theme.palette.text.secondary)}
                 >
                     {char}
                 </span>

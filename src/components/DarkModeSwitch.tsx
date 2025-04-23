@@ -1,7 +1,8 @@
 import React from 'react';
 import { IconButton, Box } from '@mui/material';
 import { Sun, Moon } from 'lucide-react';
-import { keyframes } from '@emotion/react';
+import { keyframes, useTheme } from '@mui/material';
+import { useDarkMode } from '../contexts/DarkModeContext';
 
 const rotateFadeIn = keyframes`
   0% {
@@ -14,31 +15,28 @@ const rotateFadeIn = keyframes`
   }
 `;
 
-interface DarkModeSwitchProps {
-    currentTheme: 'light' | 'dark';
-    onToggle: () => void;
-}
-
-export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({ currentTheme, onToggle }) => {
+export const DarkModeSwitch: React.FC = () => {
+    const { currentTheme, toggleTheme } = useDarkMode();
     const isDark = currentTheme === 'dark';
     const IconComponent = isDark ? Sun : Moon;
     const iconKey = isDark ? 'sun-icon' : 'moon-icon';
+    const theme = useTheme();
 
     return (
         <IconButton
-            onClick={onToggle}
+            onClick={toggleTheme}
             disableRipple
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             size="medium"
             sx={{
-                color: '#777777',
+                color: theme.palette.text.secondary,
                 borderRadius: '50%',
                 padding: '8px',
                 transition: 'transform 0.25s ease-out, background-color 0.25s ease-out, color 0.2s ease-in-out',
                 '&:hover': {
                     transform: 'scale(1.15) rotate(10deg)',
                     backgroundColor: 'transparent',
-                    color: '#CB450C',
+                    color: theme.palette.accent.hover,
                 },
                 '&:active': {
                     transform: 'scale(0.95)',
@@ -46,18 +44,15 @@ export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({ currentTheme, on
             }}
         >
             <Box
-                key={iconKey}
                 sx={{
+                    animation: `${rotateFadeIn} 0.3s ease-out`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    animation: `${rotateFadeIn} 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)`,
                 }}
+                key={iconKey}
             >
-                <IconComponent
-                    size={28}
-                    strokeWidth={2}
-                />
+                <IconComponent size={28} strokeWidth={2} />
             </Box>
         </IconButton>
     );

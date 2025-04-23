@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -9,6 +9,7 @@ interface PreloaderProps {
 export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     const textRef = useRef<HTMLSpanElement | null>(null);
     const boxRef = useRef<HTMLDivElement | null>(null);
+    const theme = useTheme();
 
     useEffect(() => {
         if (textRef.current && boxRef.current) {
@@ -22,9 +23,9 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                     onComplete: () => {
                         gsap.fromTo(
                             textRef.current,
-                            { color: "#777777" },
+                            { color: theme.palette.text.secondary },
                             {
-                                color: "#AAAAAA",
+                                color: theme.palette.text.primary,
                                 repeat: 2,
                                 yoyo: true,
                                 duration: 1.2,
@@ -53,7 +54,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 justifyContent: "center",
                 alignItems: "center",
                 height: "100vh",
-                backgroundColor: "#111111",
+                backgroundColor: theme.palette.background.default,
                 userSelect: "none",
                 paddingRight: "40px",
             }}
@@ -63,7 +64,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 sx={{
                     opacity: 0,
                     fontSize: "350px",
-                    color: "#777777",
+                    color: theme.palette.text.secondary,
                     fontFamily: "'Round 8', sans-serif",
                 }}
             >

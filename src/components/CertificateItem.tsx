@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem, Typography } from '@mui/material';
+import { ListItem, Typography, useTheme } from '@mui/material';
 import { Certificate } from '../types';
 
 const CERTIFICATE_ITEM_CLASS = 'certificate-list-item';
@@ -15,13 +15,15 @@ export const CertificateItem: React.FC<CertificateItemProps> = ({
                                                                                           isHovered,
                                                                                           onMouseEnter,
                                                                                       }) => {
+    const theme = useTheme();
+
     return (
         <ListItem
             className={CERTIFICATE_ITEM_CLASS}
             sx={{
                 py: 1.25,
                 px: 0,
-                borderTop: '1px solid #AAAAAA',
+                borderTop: `1px solid ${theme.palette.text.secondary}`,
                 position: 'relative',
                 cursor: 'pointer',
             }}
@@ -30,7 +32,7 @@ export const CertificateItem: React.FC<CertificateItemProps> = ({
             <Typography
                 variant="body1"
                 sx={{
-                    color: isHovered ? '#CB450C' : '#AAAAAA',
+                    color: isHovered ? theme.palette.accent.hover : theme.palette.text.primary,
                     fontSize: '20px',
                     transition: 'color 0.2s ease-in-out',
                     width: '100%',

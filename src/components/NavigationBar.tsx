@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { useEffect, useRef } from "react";
+import { AppBar, Box, Toolbar, useTheme } from "@mui/material";
 import { DoubleLineText, Logo, Button, Status, DarkModeSwitch } from "@components/index";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -8,14 +8,7 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export const NavigationBar: React.FC = () => {
     const navRef = useRef<HTMLDivElement | null>(null);
-
-    const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('dark');
-
-    const handleThemeToggle = () => {
-        setCurrentTheme(prevTheme => {
-            return prevTheme === 'light' ? 'dark' : 'light';
-        });
-    };
+    const theme = useTheme();
 
     useEffect(() => {
         if (navRef.current) {
@@ -39,22 +32,29 @@ export const NavigationBar: React.FC = () => {
         <Box ref={navRef} sx={{ position: "absolute", width: "100%", zIndex: 1000, top: 0, opacity: 0 }}>
             <AppBar
                 position="fixed"
+                elevation={0}
                 sx={{
-                    backgroundColor: "transparent",
                     boxShadow: "none",
                     userSelect: "none",
+                    backgroundColor: theme.palette.background.default 
                 }}
             >
-                <Toolbar sx={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                    alignItems: 'center',
-                    pt: "20px",
-                    ml: "30px",
-                    mr: "30px"
-                }}>
+                <Toolbar 
+                    disableGutters
+                    sx={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                        alignItems: 'center',
+                        pt: "20px",
+                        ml: "30px",
+                        mr: "30px",
+                        pb: 2,
+                        backgroundColor: 'transparent',
+                        minHeight: 'auto'
+                    }}
+                >
                     <Logo />
-                    <DoubleLineText line1="almost full stack dev" line2="folio / 2024 - 2025" color="#777777" />
+                    <DoubleLineText line1="almost full stack dev" line2="folio / 2024 - 2025" />
                     <Box sx={{ justifySelf: "center" }}>
                         <Status />
                     </Box>
@@ -65,10 +65,7 @@ export const NavigationBar: React.FC = () => {
                         gap: 2,
                     }}>
                         <Button label="contact" onClick={handleContactClick} />
-                        <DarkModeSwitch
-                            currentTheme={currentTheme}
-                            onToggle={handleThemeToggle}
-                        />
+                        <DarkModeSwitch />
                     </Box>
                 </Toolbar>
             </AppBar>

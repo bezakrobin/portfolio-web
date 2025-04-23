@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { InfiniteIconCarousel } from "@components/index";
 import { Language } from '../types';
 
@@ -11,6 +11,8 @@ interface LanguagesSectionProps {
 }
 
 export const LanguagesSection: React.FC<LanguagesSectionProps> = ({ languages }) => {
+    const theme = useTheme();
+
     return (
         <Box
             id="languages-frameworks"
@@ -26,7 +28,7 @@ export const LanguagesSection: React.FC<LanguagesSectionProps> = ({ languages })
                 className={ANIMATE_TITLE_CLASS}
                 variant="overline" component="h2" gutterBottom
                 sx={{
-                    color: '#AAAAAA',
+                    color: theme.palette.text.primary,
                     letterSpacing: '1px',
                     textTransform: 'uppercase',
                     fontSize: '15px',

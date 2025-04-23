@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, useTheme } from '@mui/material';
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { CertificatesList, InterestsSection, IcebreakersSection, LanguagesSection, InfoFooter } from '@components/index';
@@ -20,6 +20,7 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
     const columnGap = 15;
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const { languages } = useData();
+    const theme = useTheme();
 
     useEffect(() => {
         const sectionElement = sectionRef.current;
@@ -118,7 +119,7 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
             ref={sectionRef}
             component="section"
             sx={{
-                color: '#AAAAAA',
+                color: theme.palette.text.secondary,
                 pb: 12,
                 px: 3,
                 pt: { xs: 10, md: 20 },

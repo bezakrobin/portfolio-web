@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import gsap from "gsap";
 import { useParallax } from '../utils/hooks/useParallax';
 
@@ -11,6 +11,7 @@ interface ParallaxTextProps {
 }
 
 export const ParallaxText: React.FC<ParallaxTextProps> = ({ text, speed = 1, direction = "left", fontSize }) => {
+    const theme = useTheme();
     const textRef = useParallax({ speed, direction });
 
     const handleMouseEnter = () => {
@@ -39,10 +40,10 @@ export const ParallaxText: React.FC<ParallaxTextProps> = ({ text, speed = 1, dir
                     fontSize: fontSize,
                     lineHeight: fontSize,
                     cursor: "pointer",
-                    color: "#777777",
+                    color: theme.palette.text.secondary,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    backgroundImage: "linear-gradient(to top, #CB450C 0%, #CB450C 50%, #777777 51%, #777777 100%)",
+                    backgroundImage: `linear-gradient(to top, ${theme.palette.accent.hover} 0%, ${theme.palette.accent.hover} 50%, ${theme.palette.text.secondary} 51%, ${theme.palette.text.secondary} 100%)`,
                     backgroundSize: "100% 200%",
                     backgroundPosition: "0% 0%",
                 }}

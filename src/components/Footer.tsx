@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Link, Typography, useTheme } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import { Divider, EmailButton, Button, ParallaxText } from "@components/index";
 
@@ -17,6 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
     const [hours, setHours] = useState<string>('');
     const [minutes, setMinutes] = useState<string>('');
     const [showColon, setShowColon] = useState<boolean>(true);
+    const theme = useTheme();
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -135,10 +136,10 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                         <span style={{ fontWeight: 800 }}>Coded by</span>
                         <Link href="https://github.com/bezakrobin" target="_blank" rel="noopener noreferrer" color="inherit" underline="none"
                               sx={{
-                                  color: '#777777',
+                                  color: theme.palette.text.secondary,
                                   transition: 'color 0.3s ease',
                                   '&:hover': {
-                                      color: '#CB450C'
+                                      color: theme.palette.accent.hover
                                   }
                               }}
                         >

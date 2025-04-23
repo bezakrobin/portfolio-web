@@ -3,13 +3,15 @@ import { useData } from '../contexts/DataContext';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 
 export const Status: React.FC = () => {
     const { isAvailableForHire } = useData();
+    const theme = useTheme();
 
     const statusText = isAvailableForHire ? 'Available for hire' : 'Currently not available for hire';
 
-    const dotColor = isAvailableForHire ? '#34D399' : '#EF4444';
+    const dotColor = isAvailableForHire ? theme.palette.success.main : theme.palette.error.main;
 
     return (
         <Stack
@@ -37,7 +39,7 @@ export const Status: React.FC = () => {
                 variant="body2"
                 sx={{
                     fontSize: '1rem',
-                    color: isAvailableForHire ? '#AAAAAA' : '#777777',
+                    color: isAvailableForHire ? theme.palette.text.primary : theme.palette.text.secondary,
                     fontFamily: 'Poppins Regular, sans-serif',
                 }}
             >

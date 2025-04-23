@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { useDividerDirection } from '../contexts/DividerDirectionContext';
 import '../utils/styles/animations.css';
 
@@ -23,6 +23,7 @@ export const Divider: React.FC<DividerProps> = ({
     const [isVisible, setIsVisible] = useState(false);
     const { getNextDirection } = useDividerDirection();
     const [animateFromDirection, setAnimateFromDirection] = useState<'left' | 'right' | null>(null);
+    const theme = useTheme();
 
     useEffect(() => {
         const direction = propDirection || getNextDirection();
@@ -92,7 +93,7 @@ export const Divider: React.FC<DividerProps> = ({
                 className={`${BASE_CLASS} ${isVisible ? ANIMATE_CLASS : ''}`}
                 sx={{
                     height: thickness,
-                    backgroundColor: "#777777",
+                    backgroundColor: theme.palette.text.secondary,
                     marginY: marginY,
                     width: width,
                     transformOrigin: origin,
