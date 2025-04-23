@@ -1,11 +1,11 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-interface DashProps {
+interface HorizontalLineProps {
     width?: string;
 }
 
-export const Dash: React.FC<DashProps> = ({ width = "100px" }) => {
+export const HorizontalLine: React.FC<HorizontalLineProps> = ({ width = "100px" }) => {
     return (
         <Box
             sx={{

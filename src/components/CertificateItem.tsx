@@ -4,13 +4,13 @@ import { Certificate } from '../types';
 
 const CERTIFICATE_ITEM_CLASS = 'certificate-list-item';
 
-interface CertificateListItemDisplayProps {
+interface CertificateItemProps {
     certificate: Certificate;
     isHovered: boolean;
     onMouseEnter: () => void;
 }
 
-export const CertificateListItemDisplay: React.FC<CertificateListItemDisplayProps> = ({
+export const CertificateItem: React.FC<CertificateItemProps> = ({
                                                                                           certificate,
                                                                                           isHovered,
                                                                                           onMouseEnter,

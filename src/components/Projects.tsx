@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Divider } from "./Divider.tsx";
 import { Box } from "@mui/material";
-import { DoubleLineText } from "./DoubleLineText.tsx";
-import { ParallaxText } from "./ParallaxText.tsx";
+import { DoubleLineText, ParallaxText, Divider } from "@components/index";
 
 interface ProjectCategory {
     line1: string;

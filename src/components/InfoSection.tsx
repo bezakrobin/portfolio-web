@@ -1,13 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Box, Container } from '@mui/material';
 import gsap from "gsap";
-import { CertificatesList } from './CertificatesList';
-import { InterestsSection } from './InterestsSection';
-import { IcebreakersSection } from './IcebreakersSection';
-import { LanguagesSection } from './LanguagesSection';
-import { InfoFooter } from './InfoFooter';
-import { Certificate } from '../../types';
-import { languages } from '../../data/data';
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { CertificatesList, InterestsSection, IcebreakersSection, LanguagesSection, InfoFooter } from '@components/index';
+import { Certificate } from '../types';
+import { languages } from '@data/data';
 
 interface InfoSectionProps {
     certificates: Certificate[];
@@ -168,4 +165,4 @@ export const InfoSection: React.FC<InfoSectionProps> = ({ certificates }) => {
             </Container>
         </Box>
     );
-};
+}

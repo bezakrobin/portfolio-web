@@ -1,11 +1,11 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-interface AboutTextProps {
+interface AboutSectionProps {
     text: string;
 }
 
-export const AboutText: React.FC<AboutTextProps> = ({ text }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ text }) => {
     const words = text.split(" ");
     const firstWord = words.shift();
     const remainingText = words.join(" ");

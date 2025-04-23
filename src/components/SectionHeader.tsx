@@ -1,12 +1,12 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-interface HeaderTextProps {
+interface SectionHeaderProps {
     text: string;
     fontSize: string;
 }
 
-export const HeaderText: React.FC<HeaderTextProps> = ({ text, fontSize }) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ text, fontSize }) => {
     return (
         <Typography
             sx={{

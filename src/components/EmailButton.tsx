@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Typography, Box } from '@mui/material';
-import { Tooltip } from "./Tooltip.tsx";
+import { Tooltip } from "@components/index";
 
-interface EmailProps {
+interface EmailButtonProps {
     email: string;
 }
 
-export const Email: React.FC<EmailProps> = ({ email }) => {
+export const EmailButton: React.FC<EmailButtonProps> = ({ email }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [label, setLabel] = useState("click to copy");
 

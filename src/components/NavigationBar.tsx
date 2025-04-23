@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
-import { DoubleLineText } from "./DoubleLineText.tsx";
-import { NavButton } from "./NavButton.tsx";
+import { DoubleLineText, Logo, NavButton, Status, DarkModeSwitch } from "@components/index";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { Status } from "./Status.tsx";
-import { DarkModeSwitch } from "./DarkModeSwitch.tsx";
 
 gsap.registerPlugin(ScrollToPlugin);
 
-export const AppNavigationBar: React.FC = () => {
+export const NavigationBar: React.FC = () => {
     const navRef = useRef<HTMLDivElement | null>(null);
 
     const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('dark');
@@ -56,7 +53,7 @@ export const AppNavigationBar: React.FC = () => {
                     ml: "30px",
                     mr: "30px"
                 }}>
-                    <DoubleLineText line1="robin" line2="bezak" color="#AAAAAA" />
+                    <Logo />
                     <DoubleLineText line1="almost full stack dev" line2="folio / 2024 - 2025" color="#777777" />
                     <Box sx={{ justifySelf: "center" }}>
                         <Status />
@@ -77,4 +74,4 @@ export const AppNavigationBar: React.FC = () => {
             </AppBar>
         </Box>
     );
-};
+}

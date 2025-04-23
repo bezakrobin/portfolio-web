@@ -1,4 +1,4 @@
-import {Language} from "../types.ts";
+import { Language } from "@/types";
 
 export const featuredProjects = [
     {

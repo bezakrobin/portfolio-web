@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Box, Typography, List, IconButton } from '@mui/material';
 import { ExternalLink } from 'lucide-react';
-import { Certificate } from '../../types';
-import { CertificateListItemDisplay } from '../CertificateListItemDisplay';
-import { HoverThumbnail } from '../HoverThumbnail';
+import { Certificate } from '../types';
+import { CertificateItem, HoverThumbnail } from '@components/index';
 
 const ANIMATE_TITLE_CLASS = 'animate-title';
 
@@ -12,10 +11,7 @@ interface CertificatesListProps {
     allCertificatesUrl?: string;
 }
 
-export const CertificatesList: React.FC<CertificatesListProps> = ({
-                                                                      certificates,
-                                                                      allCertificatesUrl
-                                                                  }) => {
+export const CertificatesList: React.FC<CertificatesListProps> = ({ certificates, allCertificatesUrl }) => {
     const [hoveredCertId, setHoveredCertId] = useState<string | null>(null);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
@@ -88,7 +84,7 @@ export const CertificatesList: React.FC<CertificatesListProps> = ({
                 onMouseLeave={handleMouseLeaveList}
             >
                 {certificates.map((cert) => (
-                    <CertificateListItemDisplay
+                    <CertificateItem
                         key={cert.id}
                         certificate={cert}
                         isHovered={hoveredCertId === cert.id}
@@ -104,4 +100,4 @@ export const CertificatesList: React.FC<CertificatesListProps> = ({
             />
         </Box>
     );
-};
+}
