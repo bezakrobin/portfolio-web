@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Skeleton } from '@mui/material';
 import { SxProps, Theme } from '@mui/material/styles';
+import { calculateClampedPosition } from '../utils/position';
 
 interface HoverThumbnailProps {
     imageUrl: string | undefined;
@@ -14,42 +15,6 @@ const THUMBNAIL_HEIGHT_PX = THUMBNAIL_WIDTH_PX / THUMBNAIL_ASPECT_RATIO;
 const CURSOR_OFFSET_X = 15;
 const CURSOR_OFFSET_Y = 15;
 const VIEWPORT_MARGIN = 10;
-
-function calculateClampedPosition(
-    cursorPos: { x: number, y: number },
-    viewportSize: { width: number, height: number },
-    thumbSize: { width: number, height: number },
-    offset: { x: number, y: number },
-    margin: number
-): { left: number, top: number } | null {
-    if (!viewportSize.width || !viewportSize.height) {
-        return null;
-    }
-
-    const { x: cursorX, y: cursorY } = cursorPos;
-    const { width: viewportWidth, height: viewportHeight } = viewportSize;
-    const { width: thumbWidth, height: thumbHeight } = thumbSize;
-    const { x: offsetX, y: offsetY } = offset;
-
-    let targetLeft = cursorX + offsetX;
-    let targetTop = cursorY + offsetY;
-
-    if (targetTop + thumbHeight + margin > viewportHeight) {
-        targetTop = cursorY - thumbHeight - offsetY;
-    }
-    if (targetTop < margin) {
-        targetTop = margin;
-    }
-    if (targetLeft + thumbWidth + margin > viewportWidth) {
-        targetLeft = viewportWidth - thumbWidth - margin;
-    }
-    if (targetLeft < margin) {
-        targetLeft = margin;
-    }
-
-    return { left: targetLeft, top: targetTop };
-}
-
 
 export const HoverThumbnail: React.FC<HoverThumbnailProps> = ({ imageUrl, position, isVisible }) => {
     const [isLoaded, setIsLoaded] = useState(false);

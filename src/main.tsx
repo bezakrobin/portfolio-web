@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import './utils/styles/animations.css'
 import { DataProvider } from './contexts/DataContext'
 import { GlobalStyles } from '@mui/material';
 import { DividerDirectionProvider} from "./contexts/DividerDirectionContext.tsx";

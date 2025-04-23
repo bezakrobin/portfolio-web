@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import { useDividerDirection } from '../contexts/DividerDirectionContext';
+import '../utils/styles/animations.css';
 
 interface DividerProps {
     thickness?: number;

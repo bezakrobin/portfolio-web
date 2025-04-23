@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 import gsap from "gsap";
+import { useParallax } from '../utils/hooks/useParallax';
 
 interface ParallaxTextProps {
     text: string;
@@ -10,39 +11,7 @@ interface ParallaxTextProps {
 }
 
 export const ParallaxText: React.FC<ParallaxTextProps> = ({ text, speed = 1, direction = "left", fontSize }) => {
-    const textRef = useRef<HTMLDivElement | null>(null);
-    const offsetX = useRef(0);
-
-    useEffect(() => {
-        if (!textRef.current) return;
-
-        let lastScrollY = window.scrollY;
-        let requestId: number;
-
-        const smoothMove = () => {
-            gsap.to(textRef.current, {
-                x: offsetX.current,
-                duration: 0.3,
-                ease: "power2.out",
-            });
-            requestId = requestAnimationFrame(smoothMove);
-        };
-
-        const updateVelocity = () => {
-            const deltaY = window.scrollY - lastScrollY;
-            lastScrollY = window.scrollY;
-
-            offsetX.current += (direction === "left" ? -1 : 1) * deltaY * speed * 0.8;
-        };
-
-        window.addEventListener("scroll", updateVelocity);
-        requestId = requestAnimationFrame(smoothMove);
-
-        return () => {
-            window.removeEventListener("scroll", updateVelocity);
-            cancelAnimationFrame(requestId);
-        };
-    }, [speed, direction]);
+    const textRef = useParallax({ speed, direction });
 
     const handleMouseEnter = () => {
         gsap.to(textRef.current, { backgroundPosition: "0% 100%", duration: 0.3, ease: "power2.out" });
