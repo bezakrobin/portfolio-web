@@ -31,7 +31,7 @@ export const CommunityContributions: React.FC = () => {
                 >
                     I have created various resources and tools for designers and developers like myself. Check out{" "}
                     <Link
-                        href="https://your-link-here.com"
+                        href="#"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{

@@ -61,7 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
             </Box>
             <Divider width="100%" thickness={2} marginY={2} direction="right" />
 
-            <EmailButton email="robin.bezak.99@email.com" />
+            <EmailButton email="robin.bezak.99@gmail.com" />
 
             <Box
                 sx={{

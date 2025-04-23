@@ -5,31 +5,31 @@ export const featuredProjects: Project[] = [
         id: 1,
         projectTitle: "Project One",
         projectCategory: { line1: "art direction /", line2: "creative development" },
-        url: "https://www.google.com"
+        url: "#"
     },
     {
         id: 2,
         projectTitle: "Project Two",
         projectCategory: { line1: "branding /", line2: "visual design" },
-        url: "https://www.youtube.com"
+        url: "#"
     },
     {
         id: 3,
         projectTitle: "Project Three",
         projectCategory: { line1: "ux design /", line2: "web development" },
-        url: "https://www.instagram.com"
+        url: "#"
     },
     {
         id: 4,
         projectTitle: "Project Four",
         projectCategory: { line1: "ux design /", line2: "web development" },
-        url: "https://www.facebook.com"
+        url: "#"
     },
     {
         id: 5,
         projectTitle: "Project Five",
         projectCategory: { line1: "ux design /", line2: "web development" },
-        url: "https://www.facebook.com"
+        url: "#"
     },
 ];
 
@@ -38,31 +38,31 @@ export const otherProjects: Project[] = [
         id: 1,
         projectTitle: "Project One",
         projectCategory: { line1: "art direction /", line2: "creative development" },
-        url: "https://www.google.com"
+        url: "#"
     },
     {
         id: 2,
         projectTitle: "Project Two",
         projectCategory: { line1: "branding /", line2: "visual design" },
-        url: "https://www.youtube.com"
+        url: "#"
     },
     {
         id: 3,
         projectTitle: "Project Three",
         projectCategory: { line1: "ux design /", line2: "web development" },
-        url: "https://www.instagram.com"
+        url: "#"
     },
     {
         id: 4,
         projectTitle: "Project Four",
         projectCategory: { line1: "ux design /", line2: "web development" },
-        url: "https://www.facebook.com"
+        url: "#"
     },
     {
         id: 5,
         projectTitle: "Project Five",
         projectCategory: { line1: "ux design /", line2: "web development" },
-        url: "https://www.facebook.com"
+        url: "#"
     },
 ];
 
@@ -102,7 +102,7 @@ export const socials: SocialLink[] = [
     }
 ];
 
-export const isAvailableForHire = true;
+export const isAvailableForHire = false;
 
 export const languages: Language[] = [
     { id: "lang-0", name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
