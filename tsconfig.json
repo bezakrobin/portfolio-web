@@ -25,7 +25,5 @@
       "@data/*": ["src/data/*"]
     }
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "composite": true
+  "include": ["src"]
 }

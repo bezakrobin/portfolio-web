@@ -13,8 +13,8 @@ export { EmailButton } from './EmailButton';
 export { ScrollDownButton } from './ScrollDownButton';
 export { SectionHeader } from './SectionHeader';
 export { CenteredContainer } from './CenteredContainer';
-export { NavButton } from './NavButton';
 export { Logo } from './Logo';
+export { Button } from './Button';
 
 // Feature Components
 export { Projects } from './Projects';

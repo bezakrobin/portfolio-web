@@ -36,7 +36,7 @@ export const CertificateItem: React.FC<CertificateItemProps> = ({
                     width: '100%',
                 }}
             >
-                {certificate.name}
+                {certificate.title}
             </Typography>
         </ListItem>
     );

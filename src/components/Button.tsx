@@ -1,14 +1,14 @@
-import React from "react";
-import { Button, Box } from "@mui/material";
+import React from 'react';
+import { Button as MuiButton, Box } from "@mui/material";
 
-interface NavButtonProps {
+interface ButtonProps {
     label: string;
     onClick?: () => void;
 }
 
-export const NavButton: React.FC<NavButtonProps> = ({ label, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
     return (
-        <Button
+        <MuiButton
             onClick={onClick}
             disableRipple
             sx={{
@@ -66,6 +66,6 @@ export const NavButton: React.FC<NavButtonProps> = ({ label, onClick }) => {
                     <Box sx={{ color: "#111111" }}>{label}</Box>
                 </Box>
             </Box>
-        </Button>
+        </MuiButton>
     );
-};
+}; 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
-import { DoubleLineText, Logo, NavButton, Status, DarkModeSwitch } from "@components/index";
+import { DoubleLineText, Logo, Button, Status, DarkModeSwitch } from "@components/index";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
@@ -64,7 +64,7 @@ export const NavigationBar: React.FC = () => {
                         alignItems: "center",
                         gap: 2,
                     }}>
-                        <NavButton label="contact" onClick={handleContactClick} />
+                        <Button label="contact" onClick={handleContactClick} />
                         <DarkModeSwitch
                             currentTheme={currentTheme}
                             onToggle={handleThemeToggle}

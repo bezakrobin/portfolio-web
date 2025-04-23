@@ -94,8 +94,8 @@ export const CertificatesList: React.FC<CertificatesListProps> = ({ certificates
             </List>
 
             <HoverThumbnail
-                isVisible={!!hoveredCertificate && !!hoveredCertificate.image_url}
-                imageUrl={hoveredCertificate?.image_url}
+                isVisible={!!hoveredCertificate && !!hoveredCertificate.url}
+                imageUrl={hoveredCertificate?.url}
                 position={cursorPosition}
             />
         </Box>

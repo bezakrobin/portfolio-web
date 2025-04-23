@@ -1,7 +1,7 @@
-import {useEffect, useState} from 'react';
-import { Box, Typography } from "@mui/material";
+import { useEffect, useState } from 'react';
+import { Box, Link, Typography } from "@mui/material";
 import Marquee from "react-fast-marquee";
-import { Divider, EmailButton, NavButton, ParallaxText } from "@components/index";
+import { Divider, EmailButton, Button, ParallaxText } from "@components/index";
 
 interface SocialLink {
     id: string;
@@ -84,7 +84,6 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                     display: 'flex',
                     flexDirection: 'row',
                     gap: 2,
-                    mt: 1,
                 }}>
                     <Typography
                         variant="body2"
@@ -99,7 +98,7 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                         variant="body2"
                         sx={{
                             fontSize: '16px',
-                            whiteSpace: 'nowrap'
+                            fontFamily: "'Poppins SemiBold', sans-serif",
                         }}
                     >
                         {hours}{showColon ? ':' : ' '}{minutes}
@@ -109,46 +108,42 @@ export const Footer: React.FC<FooterProps> = ({ socials }) => {
                 <Box sx={{
                     width: { xs: '100%', sm: 'auto' },
                     minWidth: { sm: '25%' },
-                    textAlign: { xs: 'center', sm: 'right' },
+                    textAlign: 'center',
+                    fontFamily: "'Poppins Regular', sans-serif",
                     display: 'flex',
                     flexDirection: 'row',
-                    gap: 2,
-                    justifyContent: { xs: 'center', sm: 'center' },
-                    alignItems: 'center',
-                    mb: 2,
+                    gap: 1,
+                    mt: -1,
                 }}>
-                    {socials.map((social) => (
-                        <NavButton 
-                            key={social.id}
-                            label={social.name} 
-                            onClick={() => window.open(social.url, '_blank')} 
-                        />
+                    {socials.map(social => (
+                        <Button key={social.id} label={social.name} onClick={ () => window.open(social.url, '_blank', 'noopener,noreferrer') } />
                     ))}
                 </Box>
+
                 <Box sx={{
                     width: { xs: '100%', sm: 'auto' },
                     minWidth: { sm: '25%' },
                     textAlign: { xs: 'center', sm: 'right' },
-                    display: 'flex',
-                    flexDirection: 'row',
-                    gap: 2,
-                    justifyContent: { xs: 'center', sm: 'flex-end' },
-                    alignItems: 'center'
+                    textTransform: 'normal',
                 }}>
                     <Typography
                         variant="body2"
                         sx={{
                             fontSize: '16px',
-                            whiteSpace: 'nowrap',
-                            cursor: 'pointer',
-                            mt: 1,
-                            '&:hover': {
-                                textDecoration: 'underline'
-                            }
                         }}
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
-                        Coded by Robin Bezak
+                        <span style={{ fontWeight: 800 }}>Coded by</span>
+                        <Link href="https://github.com/bezakrobin" target="_blank" rel="noopener noreferrer" color="inherit" underline="none"
+                              sx={{
+                                  color: '#777777',
+                                  transition: 'color 0.3s ease',
+                                  '&:hover': {
+                                      color: '#CB450C'
+                                  }
+                              }}
+                        >
+                            {' '}Robin Bezak
+                        </Link>
                     </Typography>
                 </Box>
             </Box>
