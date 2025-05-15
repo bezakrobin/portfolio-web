@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, Toolbar, useTheme, useMediaQuery } from "@mui/material";
 import { DoubleLineText, Logo, Button, Status, DarkModeSwitch } from "@components/index";
+import { MobileNavigation } from "./MobileNavigation";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
@@ -8,6 +9,8 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export const NavigationBar: React.FC = () => {
     const navRef = useRef<HTMLDivElement | null>(null);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
     useEffect(() => {
         if (navRef.current) {
@@ -27,6 +30,10 @@ export const NavigationBar: React.FC = () => {
         });
     };
 
+    if (isMobile) {
+        return <MobileNavigation />;
+    }
+
     return (
         <Box ref={navRef} sx={{ position: "absolute", width: "100%", zIndex: 1000, top: 0, opacity: 0 }}>
             <AppBar
@@ -42,19 +49,30 @@ export const NavigationBar: React.FC = () => {
                     disableGutters
                     sx={{
                         display: "grid",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr 1fr" },
                         alignItems: 'center',
-                        pt: "20px",
-                        ml: "30px",
-                        mr: "30px",
-                        pb: 2,
+                        pt: { xs: "10px", md: "20px" },
+                        px: { xs: 2, md: "30px" },
+                        pb: { xs: 1, md: 2 },
                         backgroundColor: 'transparent',
-                        minHeight: 'auto'
+                        minHeight: 'auto',
+                        gap: { xs: 1, md: 0 }
                     }}
                 >
                     <Logo />
-                    <DoubleLineText line1="almost full stack dev" line2="folio / 2024 - 2025" />
-                    <Box sx={{ justifySelf: "center" }}>
+                    <DoubleLineText 
+                        line1="almost full stack dev" 
+                        line2="folio / 2024 - 2025" 
+                        sx={{ 
+                            display: { xs: 'none', md: 'block' },
+                            justifySelf: 'center'
+                        }}
+                    />
+                    <Box sx={{ 
+                        justifySelf: { xs: 'flex-end', md: "center" },
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}>
                         <Status />
                     </Box>
                     <Box sx={{

@@ -1,12 +1,13 @@
 import React from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, SxProps, Theme } from "@mui/material";
 
 interface TextLogoProps {
     line1: string;
     line2: string;
     color?: string;
-    lineHeight?: number,
+    lineHeight?: number;
     isHovered?: boolean;
+    sx?: SxProps<Theme>;
 }
 
 export const DoubleLineText: React.FC<TextLogoProps> = ({
@@ -15,6 +16,7 @@ export const DoubleLineText: React.FC<TextLogoProps> = ({
     color,
     lineHeight = 1.5,
     isHovered = false,
+    sx
 }) => {
     const theme = useTheme();
 
@@ -26,6 +28,7 @@ export const DoubleLineText: React.FC<TextLogoProps> = ({
             sx={{
                 transition: 'color 0.3s ease',
                 color: isHovered ? theme.palette.text.primary : color ? color : theme.palette.text.secondary,
+                ...sx
             }}
         >
             <Typography

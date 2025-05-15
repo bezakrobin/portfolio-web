@@ -1,18 +1,23 @@
 import React from 'react';
-import { Button as MuiButton, Box, useTheme } from "@mui/material";
+import { Button as MuiButton, Box, useTheme, SxProps, Theme } from "@mui/material";
 
 interface ButtonProps {
     label: string;
-    onClick?: () => void;
+    onClick: () => void;
+    fullWidth?: boolean;
+    sx?: SxProps<Theme>;
+    endIcon?: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ label, onClick, fullWidth, sx, endIcon }) => {
     const theme = useTheme();
 
     return (
         <MuiButton
             onClick={onClick}
             disableRipple
+            fullWidth={fullWidth}
+            endIcon={endIcon}
             sx={{
                 position: "relative",
                 fontSize: "16px",
@@ -22,7 +27,8 @@ export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
                 borderRadius: "16px",
                 overflow: "hidden",
                 transition: "border 0.1s ease-in-out",
-                width: "fit-content",
+                width: fullWidth ? "100%" : "fit-content",
+                ...sx,
                 "&::after": {
                     content: '""',
                     position: "absolute",
@@ -42,7 +48,13 @@ export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
                     "& .text-container": {
                         transform: "translateY(-50%)",
                     },
+                    "& .MuiSvgIcon-root": {
+                        color: theme.palette.background.default,
+                    }
                 },
+                "& .MuiSvgIcon-root": {
+                    transition: "color 0.1s ease-in-out",
+                }
             }}
         >
             <Box
@@ -53,6 +65,7 @@ export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
+                    width: fullWidth ? "100%" : "auto",
                 }}
             >
                 <Box
@@ -62,6 +75,7 @@ export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
                         flexDirection: "column",
                         alignItems: "center",
                         transition: "transform 0.1s ease-in-out",
+                        width: "100%",
                     }}
                 >
                     <Box sx={{ color: theme.palette.text.secondary }}>{label}</Box>
